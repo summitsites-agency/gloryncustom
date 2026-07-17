@@ -392,7 +392,11 @@
     const fill = loader.querySelector('.loader-fill');
     const count = loader.querySelector('.loader-count');
     document.body.style.overflow = 'hidden';
-    const DUR = reduced ? 300 : 2200, t0 = performance.now();
+    // slow, cinematic loader on the homepage and on the first visit of the session; quick elsewhere
+    const isHome = (path === '' || path === 'index.html');
+    const firstLoad = !sessionStorage.getItem('gcVisited');
+    try { sessionStorage.setItem('gcVisited', '1'); } catch (e) {}
+    const DUR = reduced ? 300 : ((isHome || firstLoad) ? 2400 : 750), t0 = performance.now();
     function step(t) {
       const p = Math.min((t - t0) / DUR, 1);
       const e = p < 0.5 ? 4 * p * p * p : 1 - Math.pow(-2 * p + 2, 3) / 2;

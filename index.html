@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<link rel="stylesheet" href="assets/css/site.css?v=7" />
+<link rel="stylesheet" href="assets/css/site.css?v=10" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -92,6 +92,11 @@
           <text x="600" y="174" text-anchor="middle" textLength="1164" lengthAdjust="spacingAndGlyphs">Gloryn Custom</text>
         </svg>
       </h1>
+      <div class="seq-caps" aria-hidden="true">
+        <p class="seq-cap" id="seqCap1" data-from="0.16" data-to="0.37">Starlight headliners</p>
+        <p class="seq-cap" id="seqCap2" data-from="0.42" data-to="0.63">Ambient lighting</p>
+        <p class="seq-cap" id="seqCap3" data-from="0.70" data-to="0.95">Crafted to glow</p>
+      </div>
       <div class="hero-scroll" aria-hidden="true">Scroll ↓</div>
       <div class="seq-loader" id="seqLoader" aria-hidden="true">
         <div class="seq-loader__bar"><i id="seqLoaderFill"></i></div>
@@ -109,14 +114,14 @@
         <h2 class="display display-1" id="qs-h">Services</h2>
       </div>
       <div class="svc-list">
-        <a class="svc-item reveal" href="services.html#ambient" style="--rd:0ms"><span class="idx">01</span><span class="lab">Ambient Lighting</span><span class="arrow">→</span></a>
-        <a class="svc-item reveal" href="services.html#starlight" style="--rd:60ms"><span class="idx">02</span><span class="lab">Starlight Headliner</span><span class="arrow">→</span></a>
-        <a class="svc-item reveal" href="services.html#shooting" style="--rd:120ms"><span class="idx">03</span><span class="lab">Shooting Stars</span><span class="arrow">→</span></a>
-        <a class="svc-item reveal" href="services.html#logo" style="--rd:180ms"><span class="idx">04</span><span class="lab">Custom Logo</span><span class="arrow">→</span></a>
-        <a class="svc-item reveal" href="services.html#tint" style="--rd:240ms"><span class="idx">05</span><span class="lab">Window Tint</span><span class="arrow">→</span></a>
-        <a class="svc-item reveal" href="services.html#wraps" style="--rd:300ms"><span class="idx">06</span><span class="lab">Car Wraps</span><span class="arrow">→</span></a>
-        <a class="svc-item reveal" href="services.html#detailing" style="--rd:360ms"><span class="idx">07</span><span class="lab">Detailing</span><span class="arrow">→</span></a>
-        <a class="svc-item svc-item--all reveal" href="services.html" style="--rd:420ms"><span class="idx">＋</span><span class="lab">See all services</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#ambient"><span class="idx">01</span><span class="lab">Ambient Lighting</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#starlight"><span class="idx">02</span><span class="lab">Starlight Headliner</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#shooting"><span class="idx">03</span><span class="lab">Shooting Stars</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#logo"><span class="idx">04</span><span class="lab">Custom Logo</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#tint"><span class="idx">05</span><span class="lab">Window Tint</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#wraps"><span class="idx">06</span><span class="lab">Car Wraps</span><span class="arrow">→</span></a>
+        <a class="svc-item" href="services.html#detailing"><span class="idx">07</span><span class="lab">Detailing</span><span class="arrow">→</span></a>
+        <a class="svc-item svc-item--all" href="services.html"><span class="idx">＋</span><span class="lab">See all services</span><span class="arrow">→</span></a>
       </div>
     </div>
   </section>
@@ -331,6 +336,36 @@
     }
   }
 
+  /* scroll-synced captions over the frames — char-by-char reveal (GSAP) */
+  const caps = [];
+  function splitChars(el){
+    const text = el.textContent;
+    el.textContent = '';
+    const chars = [];
+    for(const c of text){
+      const s = document.createElement('span');
+      s.className = 'ch';
+      s.textContent = (c === ' ') ? ' ' : c;
+      el.appendChild(s);
+      chars.push(s);
+    }
+    return chars;
+  }
+  document.querySelectorAll('.seq-cap').forEach(el => {
+    const chars = splitChars(el);
+    gsap.set(chars, { opacity:0, yPercent:120 });
+    const tl = gsap.timeline({ paused:true });
+    tl.to(chars, { opacity:1, yPercent:0, duration:0.6, ease:'power3.out', stagger:0.028 });
+    caps.push({ tl, from:parseFloat(el.dataset.from), to:parseFloat(el.dataset.to), on:false });
+  });
+  function updateCaps(p){
+    caps.forEach(c => {
+      const active = p >= c.from && p < c.to;
+      if(active && !c.on){ c.on = true; c.tl.play(); }
+      else if(!active && c.on){ c.on = false; c.tl.reverse(); }
+    });
+  }
+
   const seq = { frame:0 };
   gsap.to(seq, {
     frame: FRAME_COUNT-1,
@@ -349,18 +384,13 @@
       currentIndex = Math.round(seq.frame);
       render();
       const p = seq.frame/(FRAME_COUNT-1);
-      // GLORYN CUSTOM reveals as you scroll in (rise + scale + de-blur), then hands off to the sequence
+      // GLORYN CUSTOM sits at the top, fades out as you scroll into the sequence
       if(seqHero){
-        const fin  = Math.min(1, p / 0.08);                             // fade/scale in  (0 → 8%)
-        const fout = 1 - Math.min(1, Math.max(0, p - 0.22) / 0.12);     // fade out       (22% → 34%)
-        const o = Math.max(0, fin * fout);
-        const rise  = (1 - fin) * 60;   // starts 60px low, rises into place
-        const drift = (1 - fout) * 34;  // drifts up as it leaves
-        const scale = 0.9 + fin * 0.1;  // 0.9 → 1
+        const o = Math.max(0, 1 - p/0.12);
         seqHero.style.opacity = o;
-        seqHero.style.transform = 'translateY(calc(-50% + ' + rise + 'px - ' + drift + 'px)) scale(' + scale + ')';
-        seqHero.style.filter = 'blur(' + ((1 - fin) * 14) + 'px)';
+        seqHero.style.transform = 'translateY(calc(-50% - ' + ((1-o)*26) + 'px))';
       }
+      updateCaps(p);
       // "Scroll" cue stays visible throughout the sequence (no fade)
     }
   });
@@ -369,9 +399,17 @@
   ScrollTrigger.addEventListener('refresh', resize);
   resize();
   preload();
+
+  /* services list glides up into place as it scrolls in (Framer-Motion-style, via GSAP) */
+  if(!REDUCE){
+    gsap.from('.svc-item', {
+      opacity:0, y:80, duration:1.1, ease:'power3.out', stagger:0.12,
+      scrollTrigger:{ trigger:'.svc-list', start:'top 82%', once:true }
+    });
+  }
 })();
 </script>
 
-<script src="assets/js/site.js?v=3" defer></script>
+<script src="assets/js/site.js?v=4" defer></script>
 </body>
 </html>
