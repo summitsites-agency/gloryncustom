@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<link rel="stylesheet" href="assets/css/site.css?v=4" />
+<link rel="stylesheet" href="assets/css/site.css?v=7" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -273,7 +273,6 @@
   let loaded = 0, currentIndex = 0, dpr = 1;
 
   const seqHero      = document.getElementById('seqHero');
-  const scrollCue    = document.querySelector('.seq-hero .hero-scroll');
   const loaderEl     = document.getElementById('seqLoader');
   const loaderTxt    = document.getElementById('seqLoaderTxt');
   const loaderFill   = document.getElementById('seqLoaderFill');
@@ -350,13 +349,19 @@
       currentIndex = Math.round(seq.frame);
       render();
       const p = seq.frame/(FRAME_COUNT-1);
-      // opening title fades + drifts up as the car scene begins
+      // GLORYN CUSTOM reveals as you scroll in (rise + scale + de-blur), then hands off to the sequence
       if(seqHero){
-        const o = Math.max(0, 1 - p/0.12);
+        const fin  = Math.min(1, p / 0.08);                             // fade/scale in  (0 → 8%)
+        const fout = 1 - Math.min(1, Math.max(0, p - 0.22) / 0.12);     // fade out       (22% → 34%)
+        const o = Math.max(0, fin * fout);
+        const rise  = (1 - fin) * 60;   // starts 60px low, rises into place
+        const drift = (1 - fout) * 34;  // drifts up as it leaves
+        const scale = 0.9 + fin * 0.1;  // 0.9 → 1
         seqHero.style.opacity = o;
-        seqHero.style.transform = 'translateY(calc(-50% - ' + ((1-o)*26) + 'px))';
+        seqHero.style.transform = 'translateY(calc(-50% + ' + rise + 'px - ' + drift + 'px)) scale(' + scale + ')';
+        seqHero.style.filter = 'blur(' + ((1 - fin) * 14) + 'px)';
       }
-      if(scrollCue) scrollCue.style.opacity = Math.max(0, 1 - p/0.05);
+      // "Scroll" cue stays visible throughout the sequence (no fade)
     }
   });
 
@@ -367,6 +372,6 @@
 })();
 </script>
 
-<script src="assets/js/site.js?v=2" defer></script>
+<script src="assets/js/site.js?v=3" defer></script>
 </body>
 </html>

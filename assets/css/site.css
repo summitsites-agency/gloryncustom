@@ -77,7 +77,7 @@ body::-webkit-scrollbar{ display:none }
 .skip:focus{ transform:none }
 
 @media (prefers-reduced-motion: reduce){
-  *{ animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important }
+  *{ animation-duration:.001ms !important; animation-delay:0s !important; animation-iteration-count:1 !important; transition-duration:.001ms !important; scroll-behavior:auto !important }
 }
 
 /* ============================================================
@@ -186,7 +186,8 @@ main{ position:relative; z-index:2 }
    header
    ============================================================ */
 /* fixed stack: navbar on top, promo bar locked directly beneath it */
-.topbar{ position:fixed; inset-inline:0; top:0; z-index:90 }
+.topbar{ position:fixed; inset-inline:0; top:0; z-index:90; transition:transform 1.15s var(--ease) }
+.topbar.nav-hidden{ transform:translateY(-100%); pointer-events:none }
 .header{ position:relative; z-index:2; transition:background .4s, backdrop-filter .4s, border-color .4s;
   border-bottom:1px solid transparent }
 
@@ -282,8 +283,9 @@ main{ position:relative; z-index:2 }
 /* ============================================================
    scroll-linked image-sequence hero (home)
    ============================================================ */
-.seq-hero{ position:relative; height:400vh; background:#0b0b0c }
-.seq-stage{ position:relative; height:100svh; width:100%; overflow:hidden; background:#0b0b0c }
+.seq-hero{ position:relative; height:800vh; background:#0b0b0c }
+.seq-stage{ position:relative; height:100svh; width:100%; overflow:hidden; background:#0b0b0c;
+  border-radius:0 0 clamp(1.5rem,4vw,3rem) clamp(1.5rem,4vw,3rem) }
 #seqCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block }
 .seq-scrim{ position:absolute; inset:0; z-index:2; pointer-events:none;
   background:
@@ -291,7 +293,7 @@ main{ position:relative; z-index:2 }
     linear-gradient(to bottom, rgba(6,6,7,.5), transparent 24%, transparent 66%, rgba(6,6,7,.62)) }
 .seq-hero .hero-wordmark{ position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); z-index:3;
   width:100%; margin:0; padding-inline:clamp(.75rem,2.5vw,2.5rem); line-height:0; pointer-events:none;
-  will-change:opacity,transform }
+  will-change:opacity,transform,filter }
 .seq-hero .hero-wordmark svg{ filter:drop-shadow(0 8px 44px rgba(0,0,0,.6)) }
 .seq-hero .hero-wordmark text{ fill:var(--cream) }
 .seq-hero .hero-scroll{ z-index:3; color:var(--cream); text-shadow:0 2px 20px rgba(0,0,0,.6) }

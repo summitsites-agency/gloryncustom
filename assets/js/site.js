@@ -119,6 +119,16 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(setTB);
   }
 
+  /* homepage: hide the topbar over the sequence hero, reveal once scrolled past it */
+  const seqHeroEl = document.querySelector('.seq-hero');
+  if (topbar && seqHeroEl) {
+    const onHeroNav = () => {
+      const pastHero = seqHeroEl.getBoundingClientRect().bottom <= 0;
+      topbar.classList.toggle('nav-hidden', !pastHero);
+    };
+    onHeroNav(); addEventListener('scroll', onHeroNav, { passive: true });
+  }
+
   /* ---------------------------------------------------------
      5. full-screen menu overlay
      --------------------------------------------------------- */
