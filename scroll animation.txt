@@ -1,0 +1,9 @@
+https://cindyzhu.com.au/guides/5k-scroll-animation.html
+
+Using this folder of image frames, build a scroll-linked image sequence on an HTML canvas. Preload all the frames first, then map the scroll position to the frame index so the animation plays frame by frame as the user scrolls, the same technique Apple uses on the AirPods page. Use GSAP and ScrollTrigger. Pin the canvas while the sequence plays, scrub it smoothly to scroll so there's no stutter, keep it sharp and centered on mobile, and add a graceful fallback if the frames are still loading. Give me a single self-contained file I can drop straight into my site.
+
+The parallax section. Add a parallax section above my scroll sequence: a background layer, a midground product image, and headline text that all move at slightly different speeds as I scroll, so the section feels like it has depth. Use GSAP and ScrollTrigger, keep the motion subtle and smooth, and make sure it still reads cleanly on mobile.
+
+ The sticky-scroll reveal. Build a sticky-scroll section where the visual on the right stays pinned while three blocks of copy scroll past on the left, and each block fades and highlights as it becomes active, like the feature walkthroughs on a product page. Use GSAP ScrollTrigger, and stack it to a single column on mobile so nothing overlaps
+
+The hover animation. Add a hover animation to my product cards: on hover the card lifts slightly, a soft shadow grows, the image scales up just a touch inside its frame, and a CTA fades in. Use GSAP for the timing so it feels springy not janky, respect prefers-reduced-motion, and give hover-less touch devices a tap state instead.

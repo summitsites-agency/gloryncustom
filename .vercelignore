@@ -1,0 +1,10 @@
+_media_src/
+_media_staged/
+_contact_sheet.jpg
+_convert.py
+_curate.py
+*.jpeg
+*.zip
+docs/
+.playwright-mcp/
+logo.jpg

@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gloryn Custom — Specialized Car Aesthetics · Ambient Lighting, Starlight & More</title>
+<meta name="description" content="Gloryn Custom — Ottawa & Montreal's specialists in ambient interior lighting, starlight headliners, shooting stars, window tint, wraps & detailing. Backed by a 2-year warranty." />
+<meta name="theme-color" content="#0a0a0a" />
+<meta property="og:title" content="Gloryn Custom — Specialized Car Aesthetics" />
+<meta property="og:description" content="Ambient lighting, starlight headliners & more. Ottawa + Montreal. 2-year warranty." />
+<meta property="og:type" content="website" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
+<link rel="stylesheet" href="assets/css/site.css?v=4" />
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<!-- loader -->
+<div class="loader" id="loader">
+  <div class="loader-brand">
+    <img src="assets/img/logo-512.webp" alt="Gloryn Custom" width="76" height="76" />
+    <div class="name">Gloryn Custom</div>
+    <div class="tag">Specialized Car Aesthetics</div>
+  </div>
+  <div class="loader-track"><div class="loader-fill"></div></div>
+  <div class="loader-count">000</div>
+</div>
+
+<div class="atmosphere" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ topbar: navbar + promo ============ -->
+<div class="topbar">
+  <a class="promo" href="contact.html#book" aria-label="15% off your first installation — book now">
+    <span><strong>15% off</strong> your first installation</span>
+    <span class="promo-cta">Book now →</span>
+  </a>
+<header class="header">
+  <div class="header-in">
+    <a class="brand" href="index.html" aria-label="Gloryn Custom home">
+      <img src="assets/img/logo-512.webp" alt="" width="38" height="38" />
+      <span class="brand-name">Gloryn<small>Custom</small></span>
+    </a>
+    <nav class="nav-primary" aria-label="Primary">
+      <ul>
+        <li><a data-nav="services.html" href="services.html">Services</a></li>
+        <li><a data-nav="testimonials.html" href="testimonials.html">Testimonials</a></li>
+        <li><a data-nav="contact.html" href="contact.html">Booking</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <button class="menu-btn" data-menu-open aria-label="Open menu">
+        <span class="bars"><span></span><span></span></span><span class="menu-word">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+</div>
+
+<!-- ============ nav overlay ============ -->
+<div class="nav-menu" id="navMenu" aria-hidden="true">
+  <canvas class="starfield" aria-hidden="true"></canvas>
+  <div class="nav-top">
+    <a class="brand" href="index.html"><img src="assets/img/logo-512.webp" alt="" width="38" height="38" /><span class="brand-name">Gloryn<small>Custom</small></span></a>
+    <button class="nav-close" data-menu-close aria-label="Close menu">Close ✕</button>
+  </div>
+  <nav class="nav-mid shell" aria-label="Overlay">
+    <ul class="nav-list">
+      <li><a class="nav-item" href="index.html"><span class="idx">01</span><span class="lab">Home</span></a></li>
+      <li><a class="nav-item" href="services.html"><span class="idx">02</span><span class="lab">Services</span></a></li>
+      <li><a class="nav-item" href="testimonials.html"><span class="idx">03</span><span class="lab">Testimonials</span></a></li>
+      <li><a class="nav-item" href="contact.html"><span class="idx">04</span><span class="lab">Booking</span></a></li>
+    </ul>
+  </nav>
+  <div class="nav-bottom">
+    <span>Ottawa · Montreal — Open 8am–9pm daily</span>
+    <a href="tel:8193193798">819-319-3798 →</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO — scroll-linked image sequence ============ -->
+  <section class="seq-hero" id="assembly" aria-label="Gloryn Custom">
+    <div class="seq-stage">
+      <canvas id="seqCanvas" aria-hidden="true"></canvas>
+      <div class="seq-scrim" aria-hidden="true"></div>
+      <h1 class="hero-wordmark" id="seqHero" aria-label="Gloryn Custom">
+        <svg viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
+          <text x="600" y="174" text-anchor="middle" textLength="1164" lengthAdjust="spacingAndGlyphs">Gloryn Custom</text>
+        </svg>
+      </h1>
+      <div class="hero-scroll" aria-hidden="true">Scroll ↓</div>
+      <div class="seq-loader" id="seqLoader" aria-hidden="true">
+        <div class="seq-loader__bar"><i id="seqLoaderFill"></i></div>
+        <div class="seq-loader__txt" id="seqLoaderTxt">Preparing…</div>
+      </div>
+    </div>
+  </section>
+
+  
+
+  <!-- ============ services — menu-style list ============ -->
+  <section class="section" aria-labelledby="qs-h">
+    <div class="shell">
+      <div class="intro reveal">
+        <h2 class="display display-1" id="qs-h">Services</h2>
+      </div>
+      <div class="svc-list">
+        <a class="svc-item reveal" href="services.html#ambient" style="--rd:0ms"><span class="idx">01</span><span class="lab">Ambient Lighting</span><span class="arrow">→</span></a>
+        <a class="svc-item reveal" href="services.html#starlight" style="--rd:60ms"><span class="idx">02</span><span class="lab">Starlight Headliner</span><span class="arrow">→</span></a>
+        <a class="svc-item reveal" href="services.html#shooting" style="--rd:120ms"><span class="idx">03</span><span class="lab">Shooting Stars</span><span class="arrow">→</span></a>
+        <a class="svc-item reveal" href="services.html#logo" style="--rd:180ms"><span class="idx">04</span><span class="lab">Custom Logo</span><span class="arrow">→</span></a>
+        <a class="svc-item reveal" href="services.html#tint" style="--rd:240ms"><span class="idx">05</span><span class="lab">Window Tint</span><span class="arrow">→</span></a>
+        <a class="svc-item reveal" href="services.html#wraps" style="--rd:300ms"><span class="idx">06</span><span class="lab">Car Wraps</span><span class="arrow">→</span></a>
+        <a class="svc-item reveal" href="services.html#detailing" style="--rd:360ms"><span class="idx">07</span><span class="lab">Detailing</span><span class="arrow">→</span></a>
+        <a class="svc-item svc-item--all reveal" href="services.html" style="--rd:420ms"><span class="idx">＋</span><span class="lab">See all services</span><span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ before / after ============ -->
+  <section class="section" aria-labelledby="ba-h">
+    <div class="shell">
+      <div class="split">
+        <div class="intro reveal">
+          <h2 class="display display-2" id="ba-h">Drag to<br>reveal the glow.</h2>
+          <div class="mt-lg"><a class="btn btn--ghost" href="services.html#ambient">Ambient lighting <span class="arrow">→</span></a></div>
+        </div>
+        <div class="split-media reveal" style="--rd:120ms">
+          <div class="ba" data-ba data-cursor-label="Drag" style="--pos:50%">
+            <div class="ba-before-wrap"><img src="assets/img/reveal-off.webp" alt="Car interior with ambient lighting off" loading="lazy" /></div>
+            <img class="ba-after" src="assets/img/reveal-on.webp" alt="Car interior with Gloryn Custom ambient lighting on" loading="lazy" />
+            <span class="ba-tag left">Lights off</span>
+            <span class="ba-tag right">Lights on</span>
+            <span class="ba-handle"><span class="ba-knob">⇄</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ horizontal-scroll gallery ============ -->
+  <section class="hscroll" data-hscroll aria-labelledby="g-h">
+    <div class="hscroll-sticky">
+      <div class="hscroll-head shell" style="padding-inline:0">
+        <div class="intro" style="gap:.6rem">
+          <h2 class="display display-2" id="g-h" style="margin:0">Our work</h2>
+        </div>
+        <span class="cnt" data-hcount>01 / 12</span>
+      </div>
+      <div class="hscroll-track">
+        <article class="hcard" data-cursor-label="View"><span class="idx">01</span><img src="assets/img/gallery/starlight-blue.webp" alt="Blue starlight headliner install" loading="lazy" /><span class="cap">Starlight headliner</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">02</span><img src="assets/img/gallery/ambient-twotone.webp" alt="Two-tone ambient lighting" loading="lazy" /><span class="cap">Ambient · two-tone</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">03</span><img src="assets/img/gallery/starlight-red-dome.webp" alt="Red starlight dome" loading="lazy" /><span class="cap">Starlight dome</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">04</span><img src="assets/img/gallery/ambient-blue-dash.webp" alt="Blue ambient dashboard lighting" loading="lazy" /><span class="cap">Ambient · dash</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">05</span><img src="assets/img/gallery/starlight-constellation.webp" alt="Constellation shooting stars headliner" loading="lazy" /><span class="cap">Shooting stars</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">06</span><img src="assets/img/gallery/ambient-red-bmw.webp" alt="Red ambient lighting BMW" loading="lazy" /><span class="cap">Ambient · red</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">07</span><img src="assets/img/gallery/ambient-green.webp" alt="Green ambient lighting" loading="lazy" /><span class="cap">Ambient · green</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">08</span><img src="assets/img/gallery/starlight-purple.webp" alt="Purple starlight headliner" loading="lazy" /><span class="cap">Starlight · violet</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">09</span><img src="assets/img/gallery/ambient-blue-kia.webp" alt="Blue ambient lighting Kia" loading="lazy" /><span class="cap">Ambient · blue</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">10</span><img src="assets/img/gallery/starlight-red.webp" alt="Red starlight headliner" loading="lazy" /><span class="cap">Starlight · red</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">11</span><img src="assets/img/gallery/ambient-red-gmc.webp" alt="Red ambient lighting GMC" loading="lazy" /><span class="cap">Ambient · line</span></article>
+        <article class="hcard" data-cursor-label="View"><span class="idx">12</span><img src="assets/img/gallery/ambient-teal.webp" alt="Teal ambient lighting" loading="lazy" /><span class="cap">Ambient · teal</span></article>
+      </div>
+      <div class="hscroll-progress"><i></i></div>
+    </div>
+  </section>
+
+  <!-- ============ stats ============ -->
+  <section class="section section--tight" aria-label="By the numbers">
+    <div class="shell">
+      <div class="stats">
+        <div class="stat reveal"><div class="n"><span data-count="500" data-suffix="+">0</span></div><div class="l">Installs completed</div></div>
+        <div class="stat reveal" style="--rd:90ms"><div class="n"><span data-count="2" data-suffix="yr">0</span></div><div class="l">Warranty on every build</div></div>
+        <div class="stat reveal" style="--rd:180ms"><div class="n"><span data-count="7" data-suffix="">0</span></div><div class="l">Specialized services</div></div>
+        <div class="stat reveal" style="--rd:270ms"><div class="n"><span data-count="2" data-suffix="">0</span></div><div class="l">Cities — Ottawa &amp; Montreal</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ testimonial teaser ============ -->
+  <section class="section" aria-labelledby="tt-h">
+    <div class="shell">
+      <div class="split split--rev">
+        <div class="split-media reveal">
+          <div class="tcard" style="border-color:var(--line)">
+            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
+            <p>"Better than factory. Clean wiring, no flicker — my car turns heads now."</p>
+            <div class="who"><span class="av">M</span><span><span class="nm">Marcus D.</span><span class="rl" style="display:block">Ottawa · Ambient + Starlight</span></span></div>
+          </div>
+        </div>
+        <div class="intro reveal" style="--rd:120ms">
+          <span class="eyebrow" id="tt-h"><span class="dot"></span>Testimonials</span>
+          <p class="lede">Five-star work. Two-year warranty.</p>
+          <div class="mt-lg"><a class="btn btn--gold" href="testimonials.html">Read reviews <span class="arrow">→</span></a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ footer ============ -->
+<footer class="footer">
+  <canvas class="starfield" aria-hidden="true"></canvas>
+  <div class="shell footer-in">
+    <div class="footer-cta">
+      <h2>Ready to light<br>up your ride?</h2>
+      <a class="btn btn--gold btn--lg" href="contact.html">Book your install <span class="arrow">→</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><img src="assets/img/logo-512.webp" alt="" width="44" height="44" /><span class="brand-name">Gloryn<small>Custom</small></span></a>
+        <p>Ambient lighting, starlight, tint, wraps &amp; detailing. Ottawa &amp; Montreal.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Booking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:8193193798">819-319-3798</a></li>
+          <li><a href="mailto:gloryncustom@gmail.com">gloryncustom@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/gloryncustom/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@gloryncustom" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://share.google/kh2nYeU2pTBoFxN5n" target="_blank" rel="noopener">Google reviews</a></li>
+          <li>Open 8am–9pm daily</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <ul>
+          <li>770 Somerset St W<br>Ottawa, ON K1R 6P9</li>
+          <li>400 Rue du Parc-Industriel<br>Montréal, QC</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© <span data-year>2026</span> Gloryn Custom. All rights reserved.</span>
+      <span>Website by <a href="https://summit-sites.vercel.app/" target="_blank" rel="noopener">Summit Sites Agency</a></span>
+      <span>Ambient · Starlight · Tint · Wraps · Detailing</span>
+    </div>
+  </div>
+  <div class="footer-watermark" aria-hidden="true">GLORYN</div>
+</footer>
+
+<!-- ============ scroll-linked image sequence (hero) ============ -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  "use strict";
+  const canvas = document.getElementById('seqCanvas');
+  if(!canvas || !window.gsap || !window.ScrollTrigger) return;
+
+  const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.config({ ignoreMobileResize:true });
+
+  const FRAME_COUNT = 240;
+  const framePath = i => 'frames/v1/ezgif-frame-' + String(i).padStart(3,'0') + '.webp';
+  const ctx = canvas.getContext('2d', { alpha:false });
+  const frames = new Array(FRAME_COUNT);
+  let loaded = 0, currentIndex = 0, dpr = 1;
+
+  const seqHero      = document.getElementById('seqHero');
+  const scrollCue    = document.querySelector('.seq-hero .hero-scroll');
+  const loaderEl     = document.getElementById('seqLoader');
+  const loaderTxt    = document.getElementById('seqLoaderTxt');
+  const loaderFill   = document.getElementById('seqLoaderFill');
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    const r = canvas.getBoundingClientRect();
+    canvas.width  = Math.max(1, Math.round(r.width  * dpr));
+    canvas.height = Math.max(1, Math.round(r.height * dpr));
+    ctx.imageSmoothingEnabled = true;
+    ctx.imageSmoothingQuality = 'high';
+    render();
+  }
+
+  function nearestLoaded(i){
+    if(frames[i]) return frames[i];
+    for(let d=1; d<FRAME_COUNT; d++){
+      if(frames[i-d]) return frames[i-d];
+      if(frames[i+d]) return frames[i+d];
+    }
+    return null;
+  }
+
+  // COVER-fit: fill the whole stage (crop overflow), car stays centered.
+  function render(){
+    const cw = canvas.width, ch = canvas.height;
+    const img = nearestLoaded(currentIndex);
+    if(!img){ ctx.fillStyle = '#0b0b0c'; ctx.fillRect(0,0,cw,ch); return; }
+    const iw = img.naturalWidth, ih = img.naturalHeight;
+    const scale = Math.max(cw/iw, ch/ih);
+    const dw = iw*scale, dh = ih*scale;
+    const dx = (cw-dw)/2, dy = (ch-dh)/2;
+    ctx.drawImage(img, dx, dy, dw, dh);
+  }
+
+  function preload(){
+    for(let i=1; i<=FRAME_COUNT; i++){
+      const img = new Image();
+      img.decoding = 'async';
+      img.onload = () => {
+        frames[i-1] = img; loaded++;
+        const pct = Math.round(loaded/FRAME_COUNT*100);
+        if(loaderFill) loaderFill.style.width = pct + '%';
+        if(loaderTxt)  loaderTxt.textContent = 'Loading · ' + pct + '%';
+        if(i === 1) render();
+        if(loaded === FRAME_COUNT){
+          if(loaderEl) loaderEl.classList.add('is-done');
+          ScrollTrigger.refresh();
+        }
+      };
+      img.onerror = () => {
+        loaded++;
+        if(loaded === FRAME_COUNT){ if(loaderEl) loaderEl.classList.add('is-done'); ScrollTrigger.refresh(); }
+      };
+      img.src = framePath(i);
+    }
+  }
+
+  const seq = { frame:0 };
+  gsap.to(seq, {
+    frame: FRAME_COUNT-1,
+    snap: 'frame',
+    ease: 'none',
+    scrollTrigger:{
+      trigger:'#assembly',
+      start:'top top',
+      end:'bottom bottom',
+      scrub: REDUCE ? true : 0.55,
+      pin:'.seq-stage',
+      anticipatePin:1,
+      invalidateOnRefresh:true
+    },
+    onUpdate:()=>{
+      currentIndex = Math.round(seq.frame);
+      render();
+      const p = seq.frame/(FRAME_COUNT-1);
+      // opening title fades + drifts up as the car scene begins
+      if(seqHero){
+        const o = Math.max(0, 1 - p/0.12);
+        seqHero.style.opacity = o;
+        seqHero.style.transform = 'translateY(calc(-50% - ' + ((1-o)*26) + 'px))';
+      }
+      if(scrollCue) scrollCue.style.opacity = Math.max(0, 1 - p/0.05);
+    }
+  });
+
+  window.addEventListener('resize', resize);
+  ScrollTrigger.addEventListener('refresh', resize);
+  resize();
+  preload();
+})();
+</script>
+
+<script src="assets/js/site.js?v=2" defer></script>
+</body>
+</html>

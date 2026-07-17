@@ -1,0 +1,23 @@
+# build / editor
+node_modules/
+.vercel/
+.DS_Store
+
+# working media + originals (kept locally, not deployed)
+_media_src/
+_media_staged/
+_contact_sheet.jpg
+_convert.py
+_curate.py
+*.zip
+
+# review artifacts
+*.jpeg
+.playwright-mcp/
+
+# large source media (kept local; site only ships frames/v1 webp)
+frames/v2/
+*.mov
+*.mp4
+/*.png
+/logo.jpg

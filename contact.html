@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Booking &amp; Contact — Gloryn Custom | Ottawa &amp; Montreal</title>
+<meta name="description" content="Book your ambient lighting, starlight, tint, wrap or detailing install with Gloryn Custom. Ottawa: 770 Somerset St W. Montreal: 400 Rue du Parc-Industriel. Open 8am–9pm daily." />
+<meta name="theme-color" content="#0a0a0a" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
+<link rel="stylesheet" href="assets/css/site.css?v=2" />
+</head>
+<body>
+<a href="#main" class="skip">Skip to content</a>
+
+<div class="loader" id="loader">
+  <div class="loader-brand">
+    <img src="assets/img/logo-512.webp" alt="Gloryn Custom" width="76" height="76" />
+    <div class="name">Gloryn Custom</div>
+    <div class="tag">Specialized Car Aesthetics</div>
+  </div>
+  <div class="loader-track"><div class="loader-fill"></div></div>
+  <div class="loader-count">000</div>
+</div>
+
+<div class="atmosphere" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ topbar: navbar + promo ============ -->
+<div class="topbar">
+  <a class="promo" href="contact.html#book" aria-label="15% off your first installation — book now">
+    <span><strong>15% off</strong> your first installation</span>
+    <span class="promo-cta">Book now →</span>
+  </a>
+<header class="header">
+  <div class="header-in">
+    <a class="brand" href="index.html" aria-label="Gloryn Custom home">
+      <img src="assets/img/logo-512.webp" alt="" width="38" height="38" />
+      <span class="brand-name">Gloryn<small>Custom</small></span>
+    </a>
+    <nav class="nav-primary" aria-label="Primary">
+      <ul>
+        <li><a data-nav="index.html" href="index.html">Home</a></li>
+        <li><a data-nav="services.html" href="services.html">Services</a></li>
+        <li><a data-nav="testimonials.html" href="testimonials.html">Testimonials</a></li>
+        <li><a data-nav="contact.html" href="contact.html">Booking</a></li>
+      </ul>
+    </nav>
+    <div class="header-right">
+      <button class="menu-btn" data-menu-open aria-label="Open menu">
+        <span class="bars"><span></span><span></span></span><span class="menu-word">Menu</span>
+      </button>
+    </div>
+  </div>
+</header>
+</div>
+
+<!-- ============ nav overlay ============ -->
+<div class="nav-menu" id="navMenu" aria-hidden="true">
+  <canvas class="starfield" aria-hidden="true"></canvas>
+  <div class="nav-top">
+    <a class="brand" href="index.html"><img src="assets/img/logo-512.webp" alt="" width="38" height="38" /><span class="brand-name">Gloryn<small>Custom</small></span></a>
+    <button class="nav-close" data-menu-close aria-label="Close menu">Close ✕</button>
+  </div>
+  <nav class="nav-mid shell" aria-label="Overlay">
+    <ul class="nav-list">
+      <li><a class="nav-item" href="index.html"><span class="idx">01</span><span class="lab">Home</span></a></li>
+      <li><a class="nav-item" href="services.html"><span class="idx">02</span><span class="lab">Services</span></a></li>
+      <li><a class="nav-item" href="testimonials.html"><span class="idx">03</span><span class="lab">Testimonials</span></a></li>
+      <li><a class="nav-item" href="contact.html"><span class="idx">04</span><span class="lab">Booking</span></a></li>
+    </ul>
+  </nav>
+  <div class="nav-bottom">
+    <span>Ottawa · Montreal — Open 8am–9pm daily</span>
+    <a href="tel:8193193798">819-319-3798 →</a>
+  </div>
+</div>
+
+<main id="main">
+
+  <!-- ============ page hero ============ -->
+  <section class="page-hero" style="padding-bottom:0">
+    <canvas class="starfield" aria-hidden="true"></canvas>
+    <div class="shell">
+      <span class="eyebrow reveal" data-gate><span class="dot"></span>Booking</span>
+      <h1 class="display display-1 reveal-title" data-reveal-title data-gate>Let's book<br>your build.</h1>
+      <p class="lede reveal" data-gate style="--rd:200ms">Tell us about your car. We'll confirm a time — fast.</p>
+    </div>
+  </section>
+
+  <!-- ============ booking + info ============ -->
+  <section class="section" id="book" aria-label="Booking form">
+    <div class="shell">
+      <div class="contact-grid">
+
+        <!-- form -->
+        <div class="form-card reveal">
+          <h2 class="display display-3" style="margin-bottom:1.4rem">Request a booking</h2>
+          <form id="bookingForm" novalidate>
+            <div class="field">
+              <label for="f-service">Service</label>
+              <select id="f-service" name="service" required>
+                <option value="" disabled selected>Choose a service…</option>
+                <option>Ambient Lighting</option>
+                <option>Starlight Headliner</option>
+                <option>Shooting Stars</option>
+                <option>Custom Logo</option>
+                <option>Window Tint</option>
+                <option>Car Wraps</option>
+                <option>Car Detailing</option>
+                <option>Multiple / Not sure</option>
+              </select>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-name">Name</label>
+                <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Your name" required />
+              </div>
+              <div class="field">
+                <label for="f-phone">Phone</label>
+                <input id="f-phone" name="phone" type="tel" autocomplete="tel" placeholder="(819) 000-0000" required />
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-email">Email</label>
+                <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@email.com" required />
+              </div>
+              <div class="field">
+                <label for="f-car">Car (make &amp; model)</label>
+                <input id="f-car" name="car" type="text" placeholder="e.g. BMW 3 Series" />
+              </div>
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="f-location">Preferred location</label>
+                <select id="f-location" name="location" required>
+                  <option value="" disabled selected>Choose…</option>
+                  <option>Ottawa — 770 Somerset St W</option>
+                  <option>Montreal — 400 Rue du Parc-Industriel</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="f-date">Preferred date</label>
+                <input id="f-date" name="date" type="date" />
+              </div>
+            </div>
+            <div class="field">
+              <label for="f-message">Anything else?</label>
+              <textarea id="f-message" name="message" placeholder="Colours you want, timeline, questions…"></textarea>
+            </div>
+            <button class="btn btn--gold btn--lg" type="submit" id="bookingSubmit" style="width:100%;justify-content:center">
+              Send booking request <span class="arrow">→</span>
+            </button>
+            <p class="form-note">Same-day reply. Open 8am–9pm.</p>
+            <div class="form-status" id="bookingStatus" role="status" aria-live="polite"></div>
+          </form>
+        </div>
+
+        <!-- info -->
+        <div class="reveal" style="--rd:120ms">
+          <div class="info-block">
+            <div class="info-item">
+              <span class="ic">✆</span>
+              <div><div class="k">Call or text</div><div class="v"><a href="tel:8193193798">819-319-3798</a></div></div>
+            </div>
+            <div class="info-item">
+              <span class="ic">✉</span>
+              <div><div class="k">Email</div><div class="v"><a href="mailto:gloryncustom@gmail.com">gloryncustom@gmail.com</a></div></div>
+            </div>
+            <div class="info-item">
+              <span class="ic">◎</span>
+              <div><div class="k">Instagram</div><div class="v"><a href="https://www.instagram.com/gloryncustom/" target="_blank" rel="noopener">@gloryncustom</a></div></div>
+            </div>
+            <div class="info-item">
+              <span class="ic">♪</span>
+              <div><div class="k">TikTok</div><div class="v"><a href="https://www.tiktok.com/@gloryncustom" target="_blank" rel="noopener">@gloryncustom</a></div></div>
+            </div>
+            <div class="info-item">
+              <span class="ic">★</span>
+              <div><div class="k">Google</div><div class="v"><a href="https://share.google/kh2nYeU2pTBoFxN5n" target="_blank" rel="noopener">Read &amp; write reviews</a></div></div>
+            </div>
+            <div class="info-item">
+              <span class="ic">◷</span>
+              <div><div class="k">Hours</div><div class="v">Open 8am–9pm, every day</div></div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ footer ============ -->
+<footer class="footer">
+  <canvas class="starfield" aria-hidden="true"></canvas>
+  <div class="shell footer-in">
+    <div class="footer-cta">
+      <h2>Ready to light<br>up your ride?</h2>
+      <a class="btn btn--gold btn--lg" href="#book">Book your install <span class="arrow">→</span></a>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-brand">
+        <a class="brand" href="index.html"><img src="assets/img/logo-512.webp" alt="" width="44" height="44" /><span class="brand-name">Gloryn<small>Custom</small></span></a>
+        <p>Ambient lighting, starlight, tint, wraps &amp; detailing. Ottawa &amp; Montreal.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="testimonials.html">Testimonials</a></li>
+          <li><a href="contact.html">Booking</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:8193193798">819-319-3798</a></li>
+          <li><a href="mailto:gloryncustom@gmail.com">gloryncustom@gmail.com</a></li>
+          <li><a href="https://www.instagram.com/gloryncustom/" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="https://www.tiktok.com/@gloryncustom" target="_blank" rel="noopener">TikTok</a></li>
+          <li><a href="https://share.google/kh2nYeU2pTBoFxN5n" target="_blank" rel="noopener">Google reviews</a></li>
+          <li>Open 8am–9pm daily</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Locations</h4>
+        <ul>
+          <li>770 Somerset St W<br>Ottawa, ON K1R 6P9</li>
+          <li>400 Rue du Parc-Industriel<br>Montréal, QC</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-legal">
+      <span>© <span data-year>2026</span> Gloryn Custom. All rights reserved.</span>
+      <span>Website by <a href="https://summit-sites.vercel.app/" target="_blank" rel="noopener">Summit Sites Agency</a></span>
+      <span>Ambient · Starlight · Tint · Wraps · Detailing</span>
+    </div>
+  </div>
+  <div class="footer-watermark" aria-hidden="true">GLORYN</div>
+</footer>
+
+<script src="assets/js/site.js?v=2" defer></script>
+</body>
+</html>
