@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<link rel="stylesheet" href="assets/css/site.css?v=10" />
+<link rel="stylesheet" href="assets/css/site.css?v=16" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -79,146 +79,30 @@
 
 <main id="main">
 
-  <!-- ============ marquee ticker — glued under the promo bar ============ -->
-  <div class="marquee marquee--rev marquee--top" aria-hidden="true">
-    <div class="marquee-track">
-      <span class="marquee-item ghost">2-Year Warranty</span>
-      <span class="marquee-item">Ottawa</span>
-      <span class="marquee-item ghost">Montreal</span>
-      <span class="marquee-item">Open 8am–9pm</span>
-      <span class="marquee-item ghost">Book Today</span>
-      <span class="marquee-item ghost">2-Year Warranty</span>
-      <span class="marquee-item">Ottawa</span>
-      <span class="marquee-item ghost">Montreal</span>
-      <span class="marquee-item">Open 8am–9pm</span>
-      <span class="marquee-item ghost">Book Today</span>
-    </div>
-  </div>
-
   <!-- ============ page hero ============ -->
-  <section class="page-hero page-hero--flush">
+  <section class="page-hero">
     <canvas class="starfield" aria-hidden="true"></canvas>
     <div class="shell">
       <h1 class="display display-1 reveal-title" data-reveal-title data-gate>Services</h1>
-      <p class="lede reveal" data-gate style="--rd:200ms">Precision installs, backed by a 2-year warranty.</p>
-      <div class="hero-cta reveal" data-gate style="--rd:320ms;margin-top:2rem">
-        <a class="btn btn--gold btn--lg" href="contact.html">Book an install <span class="arrow">→</span></a>
-        <a class="btn btn--ghost btn--lg" href="#ambient">Start with ambient</a>
-      </div>
     </div>
   </section>
 
-  <!-- ============ services list ============ -->
-  <section class="section section--tight" aria-label="Services detail">
+  <!-- ============ services showcase — orbiting ring ============ -->
+  <section class="section section--tight orbit-sec" aria-label="Services">
     <div class="shell">
-      <div class="srv-list">
-
-        <!-- 01 ambient -->
-        <article class="srv reveal" id="ambient">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">01</span><img src="assets/img/services/ambient.webp" alt="Two-tone ambient interior lighting" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Ambient Lighting</h3>
-              <p>App-controlled fiber-optic light through the dash, doors and footwells. Millions of colours,
-                music sync, no visible wiring.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">◷ ~1h30</span>
-                <span class="srv-chip srv-chip--muted">2-year warranty</span>
-              </div>
-            </div>
+      <div class="orbit-stage">
+        <canvas class="starfield" aria-hidden="true"></canvas>
+        <div class="orbit-tilt">
+          <div class="orbit">
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/ambient.webp" alt="Ambient Lighting" loading="lazy" /><span class="gen-name">Ambient Lighting</span></div>
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/starlight.webp" alt="Starlight Headliner" loading="lazy" /><span class="gen-name">Starlight Headliner</span></div>
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/shooting.webp" alt="Shooting Stars" loading="lazy" /><span class="gen-name">Shooting Stars</span></div>
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/logo.webp" alt="Custom Logo" loading="lazy" /><span class="gen-name">Custom Logo</span></div>
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/tint.webp" alt="Window Tint" loading="lazy" /><span class="gen-name">Window Tint</span></div>
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/wrap.webp" alt="Car Wraps" loading="lazy" /><span class="gen-name">Car Wraps</span></div>
+            <div class="gen-item"><img class="gen-img" src="assets/img/services/detailing.webp" alt="Detailing" loading="lazy" /><span class="gen-name">Detailing</span></div>
           </div>
-        </article>
-
-        <!-- 02 starlight -->
-        <article class="srv reveal" id="starlight">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">02</span><img src="assets/img/services/starlight.webp" alt="Blue starlight headliner" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Starlight Headliner</h3>
-              <p>Thousands of fiber-optic stars hand-woven into your headliner. Custom density, custom twinkle.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">◷ 24–48h</span>
-                <span class="srv-chip srv-chip--muted">2-year warranty</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 03 shooting -->
-        <article class="srv reveal" id="shooting">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">03</span><img src="assets/img/services/shooting.webp" alt="Shooting stars headliner effect" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Shooting Stars</h3>
-              <p>Live meteor streaks across your headliner. The detail people remember.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">Pairs with Starlight</span>
-                <span class="srv-chip srv-chip--muted">2-year warranty</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 04 logo -->
-        <article class="srv reveal" id="logo">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">04</span><img src="assets/img/services/logo.webp" alt="Custom illuminated logo detail" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Custom Logo</h3>
-              <p>Your logo or initials, rendered in light. Illuminated panels and door projectors.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">Fully custom</span>
-                <span class="srv-chip srv-chip--muted">2-year warranty</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 05 tint -->
-        <article class="srv reveal" id="tint">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">05</span><img src="assets/img/services/tint.webp" alt="Window tint interior view" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Window Tint</h3>
-              <p>Precision film. Real heat and UV rejection, installed clean.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">◷ ~1h</span>
-                <span class="srv-chip srv-chip--muted">2-year warranty</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 06 wraps -->
-        <article class="srv reveal" id="wraps">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">06</span><img src="assets/img/services/wrap.webp" alt="Vehicle interior detail" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Car Wraps</h3>
-              <p>Full and partial wraps and colour changes in premium film.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">✉ Contact for a quote</span>
-                <span class="srv-chip srv-chip--muted">Premium films</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
-        <!-- 07 detailing -->
-        <article class="srv reveal" id="detailing">
-          <div class="srv-in">
-            <div class="srv-media"><span class="idx">07</span><img src="assets/img/services/detailing.webp" alt="Detailed clean car interior" data-skew loading="lazy" /></div>
-            <div class="srv-body">
-              <h3>Car Detailing</h3>
-              <p>Interior and exterior detailing — the perfect canvas for light.</p>
-              <div class="srv-meta">
-                <span class="srv-chip">Interior &amp; exterior</span>
-                <span class="srv-chip srv-chip--muted">By appointment</span>
-              </div>
-            </div>
-          </div>
-        </article>
-
+        </div>
       </div>
     </div>
   </section>
@@ -295,6 +179,6 @@
   <div class="footer-watermark" aria-hidden="true">GLORYN</div>
 </footer>
 
-<script src="assets/js/site.js?v=4" defer></script>
+<script src="assets/js/site.js?v=8" defer></script>
 </body>
 </html>

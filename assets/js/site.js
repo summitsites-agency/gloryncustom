@@ -385,6 +385,139 @@
   });
 
   /* ---------------------------------------------------------
+     8f. instagram strip — populate from cached Behold feed
+         (assets/data/instagram.json, refreshed weekly by CI).
+         Falls back to the placeholder tiles already in the HTML.
+     --------------------------------------------------------- */
+  const instaTiles = document.querySelector('[data-insta-tiles]');
+  if (instaTiles) {
+    fetch('assets/data/instagram.json', { cache: 'no-cache' })
+      .then(r => r.ok ? r.json() : [])
+      .then(items => {
+        if (!Array.isArray(items) || !items.length) return; // keep placeholders
+        instaTiles.textContent = '';
+        items.slice(0, 4).forEach(post => {
+          if (!post || !post.image) return;
+          const a = document.createElement('a');
+          a.className = 'insta__tile insta__tile--live';
+          a.href = post.permalink || 'https://www.instagram.com/gloryncustom/';
+          a.target = '_blank'; a.rel = 'noopener';
+          const img = document.createElement('img');
+          img.className = 'insta__img'; img.loading = 'lazy';
+          img.src = post.image; img.alt = 'Instagram post by @gloryncustom';
+          a.appendChild(img);
+          const ov = document.createElement('div'); ov.className = 'insta__overlay';
+          const stats = document.createElement('p'); stats.className = 'insta__stats';
+          if (post.likes != null) { const s = document.createElement('span'); s.textContent = '♥ ' + post.likes; stats.appendChild(s); }
+          if (post.comments != null) { const s = document.createElement('span'); s.textContent = '💬 ' + post.comments; stats.appendChild(s); }
+          if (stats.childNodes.length) ov.appendChild(stats);
+          if (post.caption) { const c = document.createElement('p'); c.className = 'insta__caption'; c.textContent = post.caption; ov.appendChild(c); }
+          a.appendChild(ov);
+          instaTiles.appendChild(a);
+        });
+      })
+      .catch(() => { /* keep placeholders */ });
+  }
+
+  /* ---------------------------------------------------------
+     8g. services orbit — rotating ring of service cards
+         spins on its own; hover (or tap) a card to stop the
+         ring, glide that card to the top, lift it, and name it
+     --------------------------------------------------------- */
+  const orbitStage = document.querySelector('.orbit-stage');
+  if (orbitStage) {
+    const tiltWrap = orbitStage.querySelector('.orbit-tilt');
+    const orbit = orbitStage.querySelector('.orbit');
+    const items = [...orbitStage.querySelectorAll('.gen-item')];
+    const total = items.length;
+    let radius = 0, focused = -1;
+    let rotation = 0, speed = 10, targetRot = 0, mode = 'spin';
+
+    // place one card: base position around the ring, pushed out + scaled when focused
+    function place(i) {
+      const item = items[i], on = (i === focused), extra = on ? 1.12 : 1;
+      const angle = (i / total) * Math.PI * 2;
+      const x = Math.cos(angle) * radius * extra;
+      const y = Math.sin(angle) * radius * extra;
+      const deg = angle * (180 / Math.PI);
+      item.style.transform =
+        `translate(-50%,-50%) translate(${x}px,${y}px) rotate(${deg + 90}deg)`;
+      item.querySelector('.gen-img').style.transform =
+        on ? 'translateZ(60px) scale(1.08)' : 'translateZ(30px)';
+    }
+    function placeAll() { for (let i = 0; i < total; i++) place(i); }
+
+    function layout() {
+      const r = orbitStage.getBoundingClientRect();
+      radius = Math.max(94, Math.min(r.width, r.height) * 0.31);
+      placeAll();
+    }
+    layout();
+    addEventListener('resize', layout, { passive: true });
+
+    // spin the ring so card i lands upright at the top (12 o'clock)
+    function focusTo(i) {
+      if (i === focused || i < 0) return;
+      focused = i;
+      items.forEach((it, k) => it.classList.toggle('is-focus', k === i));
+      placeAll();
+      const want = 270 - (i / total) * 360;              // orbit angle that tops card i
+      targetRot = want + Math.round((rotation - want) / 360) * 360; // nearest to current
+      if (reduced) { rotation = targetRot; orbit.style.transform = `rotate(${rotation}deg)`; }
+      else mode = 'focus';
+    }
+    function clearFocus() {
+      if (focused === -1) return;
+      focused = -1;
+      items.forEach(it => it.classList.remove('is-focus'));
+      placeAll();
+      speed = Math.max(speed, 0.6); // gentle nudge back to cruise
+      mode = 'spin';
+    }
+
+    if (!reduced) {
+      (function frame() {
+        if (mode === 'focus') {
+          rotation += (targetRot - rotation) * 0.055; // gentle glide to the chosen card
+        } else {
+          speed += (0.08 - speed) * 0.025;           // ramp down to a slow cruise
+          rotation += speed;
+        }
+        orbit.style.transform = `rotate(${rotation}deg)`;
+        requestAnimationFrame(frame);
+      })();
+
+      // 3D parallax tilt following the pointer (desktop only), vanilla lerp
+      if (fine && tiltWrap) {
+        let tx = 0, ty = 0, cx = 0, cy = 0;
+        addEventListener('mousemove', e => {
+          tx = (e.clientX / innerWidth - 0.5) * 16;
+          ty = (e.clientY / innerHeight - 0.5) * -16;
+        }, { passive: true });
+        (function tilt() {
+          cx += (tx - cx) * 0.06; cy += (ty - cy) * 0.06;
+          tiltWrap.style.transform = `rotateY(${cx}deg) rotateX(${cy}deg)`;
+          requestAnimationFrame(tilt);
+        })();
+      }
+    }
+
+    // hover to focus (desktop): driven by real pointer movement, so cards
+    // sweeping under a still cursor never hijack the selection
+    if (fine) {
+      orbitStage.addEventListener('mousemove', e => {
+        const card = e.target.closest('.gen-item');
+        if (card) focusTo(items.indexOf(card));
+      });
+      orbitStage.addEventListener('mouseleave', clearFocus);
+    }
+    // tap to focus (touch / click) — toggles the card
+    items.forEach((item, i) => {
+      item.addEventListener('click', () => { focused === i ? clearFocus() : focusTo(i); });
+    });
+  }
+
+  /* ---------------------------------------------------------
      9. loader
      --------------------------------------------------------- */
   const loader = document.getElementById('loader');

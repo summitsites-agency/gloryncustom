@@ -12,7 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<link rel="stylesheet" href="assets/css/site.css?v=10" />
+<link rel="stylesheet" href="assets/css/site.css?v=16" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -126,28 +126,39 @@
     </div>
   </section>
 
-  <!-- ============ before / after ============ -->
-  <section class="section" aria-labelledby="ba-h">
+  <!-- ============ stats ============ -->
+  <section class="section section--tight" aria-label="By the numbers">
     <div class="shell">
-      <div class="split">
-        <div class="intro reveal">
-          <h2 class="display display-2" id="ba-h">Drag to<br>reveal the glow.</h2>
-          <div class="mt-lg"><a class="btn btn--ghost" href="services.html#ambient">Ambient lighting <span class="arrow">→</span></a></div>
-        </div>
-        <div class="split-media reveal" style="--rd:120ms">
-          <div class="ba" data-ba data-cursor-label="Drag" style="--pos:50%">
-            <div class="ba-before-wrap"><img src="assets/img/reveal-off.webp" alt="Car interior with ambient lighting off" loading="lazy" /></div>
-            <img class="ba-after" src="assets/img/reveal-on.webp" alt="Car interior with Gloryn Custom ambient lighting on" loading="lazy" />
-            <span class="ba-tag left">Lights off</span>
-            <span class="ba-tag right">Lights on</span>
-            <span class="ba-handle"><span class="ba-knob">⇄</span></span>
-          </div>
-        </div>
+      <div class="stats">
+        <div class="stat reveal"><div class="n"><span data-count="500" data-suffix="+">0</span></div><div class="l">Installs completed</div></div>
+        <div class="stat reveal" style="--rd:90ms"><div class="n"><span data-count="2" data-suffix="yr">0</span></div><div class="l">Warranty on every build</div></div>
+        <div class="stat reveal" style="--rd:180ms"><div class="n"><span data-count="7" data-suffix="">0</span></div><div class="l">Specialized services</div></div>
+        <div class="stat reveal" style="--rd:270ms"><div class="n"><span data-count="2" data-suffix="">0</span></div><div class="l">Cities — Ottawa &amp; Montreal</div></div>
       </div>
     </div>
   </section>
 
-  <!-- ============ horizontal-scroll gallery ============ -->
+  <!-- ============ instagram (latest posts via Behold feed) ============ -->
+  <section class="section" aria-labelledby="ig-h">
+    <div class="shell">
+      <div class="intro reveal" style="margin-bottom:clamp(2rem,4vw,3rem)">
+        <span class="eyebrow"><span class="dot"></span>Instagram</span>
+        <h2 class="display display-2" id="ig-h">Latest from the shop.</h2>
+      </div>
+      <div class="insta reveal" style="--rd:120ms">
+        <div class="insta__tiles" data-insta-tiles>
+          <!-- populated by site.js from assets/data/instagram.json; placeholder tiles until then -->
+          <div class="insta__tile"></div>
+          <div class="insta__tile"></div>
+          <div class="insta__tile"></div>
+          <div class="insta__tile"></div>
+        </div>
+        <a class="insta__handle" href="https://www.instagram.com/gloryncustom/" target="_blank" rel="noopener">@gloryncustom <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ horizontal-scroll gallery (bottom of homepage) ============ -->
   <section class="hscroll" data-hscroll aria-labelledby="g-h">
     <div class="hscroll-sticky">
       <div class="hscroll-head shell" style="padding-inline:0">
@@ -171,38 +182,6 @@
         <article class="hcard" data-cursor-label="View"><span class="idx">12</span><img src="assets/img/gallery/ambient-teal.webp" alt="Teal ambient lighting" loading="lazy" /><span class="cap">Ambient · teal</span></article>
       </div>
       <div class="hscroll-progress"><i></i></div>
-    </div>
-  </section>
-
-  <!-- ============ stats ============ -->
-  <section class="section section--tight" aria-label="By the numbers">
-    <div class="shell">
-      <div class="stats">
-        <div class="stat reveal"><div class="n"><span data-count="500" data-suffix="+">0</span></div><div class="l">Installs completed</div></div>
-        <div class="stat reveal" style="--rd:90ms"><div class="n"><span data-count="2" data-suffix="yr">0</span></div><div class="l">Warranty on every build</div></div>
-        <div class="stat reveal" style="--rd:180ms"><div class="n"><span data-count="7" data-suffix="">0</span></div><div class="l">Specialized services</div></div>
-        <div class="stat reveal" style="--rd:270ms"><div class="n"><span data-count="2" data-suffix="">0</span></div><div class="l">Cities — Ottawa &amp; Montreal</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============ testimonial teaser ============ -->
-  <section class="section" aria-labelledby="tt-h">
-    <div class="shell">
-      <div class="split split--rev">
-        <div class="split-media reveal">
-          <div class="tcard" style="border-color:var(--line)">
-            <span class="stars" aria-label="5 out of 5 stars">★★★★★</span>
-            <p>"Better than factory. Clean wiring, no flicker — my car turns heads now."</p>
-            <div class="who"><span class="av">M</span><span><span class="nm">Marcus D.</span><span class="rl" style="display:block">Ottawa · Ambient + Starlight</span></span></div>
-          </div>
-        </div>
-        <div class="intro reveal" style="--rd:120ms">
-          <span class="eyebrow" id="tt-h"><span class="dot"></span>Testimonials</span>
-          <p class="lede">Five-star work. Two-year warranty.</p>
-          <div class="mt-lg"><a class="btn btn--gold" href="testimonials.html">Read reviews <span class="arrow">→</span></a></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -410,6 +389,6 @@
 })();
 </script>
 
-<script src="assets/js/site.js?v=4" defer></script>
+<script src="assets/js/site.js?v=8" defer></script>
 </body>
 </html>
