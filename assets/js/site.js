@@ -518,6 +518,24 @@
   }
 
   /* ---------------------------------------------------------
+     8h. services accordion — single-open expandable list
+     --------------------------------------------------------- */
+  document.querySelectorAll('.svc-acc').forEach(acc => {
+    const rows = [...acc.querySelectorAll('.svc-acc-item')];
+    rows.forEach(item => {
+      const head = item.querySelector('.svc-acc-head');
+      head.addEventListener('click', () => {
+        const willOpen = !item.classList.contains('is-open');
+        rows.forEach(r => {
+          r.classList.remove('is-open');
+          r.querySelector('.svc-acc-head').setAttribute('aria-expanded', 'false');
+        });
+        if (willOpen) { item.classList.add('is-open'); head.setAttribute('aria-expanded', 'true'); }
+      });
+    });
+  });
+
+  /* ---------------------------------------------------------
      9. loader
      --------------------------------------------------------- */
   const loader = document.getElementById('loader');
