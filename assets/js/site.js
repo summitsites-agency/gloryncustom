@@ -216,21 +216,25 @@
     function frame(t) {
       raf = requestAnimationFrame(frame);
       ctx.clearRect(0, 0, w, h);
+      // stars follow the theme: cream on dark, near-black on light
+      const light = document.documentElement.dataset.theme === 'light';
+      const ink = light ? '18,18,20' : '246,241,231';
+      const streak = light ? '122,80,17' : '247,216,133';
       for (const s of stars) {
         s.tw += s.sp;
         const a = s.base + Math.sin(s.tw) * 0.35;
         ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, 6.283);
         ctx.fillStyle = s.gold
           ? `rgba(231,181,59,${Math.max(0, a)})`
-          : `rgba(246,241,231,${Math.max(0, a * 0.9)})`;
+          : `rgba(${ink},${Math.max(0, a * 0.9)})`;
         ctx.fill();
       }
       for (let i = shooters.length - 1; i >= 0; i--) {
         const sh = shooters[i];
         sh.x += sh.vx; sh.y += sh.vy; sh.life -= 0.012;
         const g = ctx.createLinearGradient(sh.x, sh.y, sh.x - sh.vx / Math.hypot(sh.vx, sh.vy) * sh.len, sh.y - sh.vy / Math.hypot(sh.vx, sh.vy) * sh.len);
-        g.addColorStop(0, `rgba(247,216,133,${Math.max(0, sh.life)})`);
-        g.addColorStop(1, 'rgba(247,216,133,0)');
+        g.addColorStop(0, `rgba(${streak},${Math.max(0, sh.life)})`);
+        g.addColorStop(1, `rgba(${streak},0)`);
         ctx.strokeStyle = g; ctx.lineWidth = 1.6 * dpr; ctx.lineCap = 'round';
         ctx.beginPath(); ctx.moveTo(sh.x, sh.y);
         ctx.lineTo(sh.x - sh.vx / Math.hypot(sh.vx, sh.vy) * sh.len, sh.y - sh.vy / Math.hypot(sh.vx, sh.vy) * sh.len);

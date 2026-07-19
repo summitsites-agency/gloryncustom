@@ -784,10 +784,7 @@ html[data-theme="light"] .loc-map{ background:
 html[data-theme="light"] .video-hero__mark text{ fill:#f6f1e7 }
 html[data-theme="light"] .video-hero .hero-scroll{ color:#f6f1e7 }
 
-/* starfields are drawn light-on-dark → hide them where the surface is now light */
-html[data-theme="light"] .footer .starfield,
-html[data-theme="light"] .nav-menu .starfield,
-html[data-theme="light"] .page-hero .starfield{ display:none }
+/* starfields stay visible in light mode — the stars recolor to near-black in site.js */
 
 /* atmosphere + grain retuned for a light canvas */
 html[data-theme="light"] .grain{ opacity:.02; mix-blend-mode:multiply }
