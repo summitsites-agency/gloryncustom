@@ -21,3 +21,9 @@ frames/v2/
 *.mp4
 /*.png
 /logo.jpg
+
+# hero video — shipped with the site
+!assets/video/hero-m2.mp4
+
+# hero video (shipped)
+!assets/video/hero-m2.mp4

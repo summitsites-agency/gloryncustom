@@ -13,6 +13,32 @@
      --------------------------------------------------------- */
   document.querySelectorAll('[data-year]').forEach(el => el.textContent = new Date().getFullYear());
 
+  /* ---------------------------------------------------------
+     0b. theme toggle — dark ⇄ light (persisted; default dark)
+     --------------------------------------------------------- */
+  (function initTheme() {
+    const root = document.documentElement;
+    const store = (v) => { try { localStorage.setItem('gc-theme', v); } catch (e) {} };
+    const themeMeta = document.querySelector('meta[name="theme-color"]');
+    const apply = (mode) => {
+      root.dataset.theme = mode;
+      const light = mode === 'light';
+      if (themeMeta) themeMeta.setAttribute('content', light ? '#f6f6f4' : '#0a0a0a');
+      document.querySelectorAll('[data-theme-toggle]').forEach(b => {
+        b.setAttribute('aria-pressed', String(light));
+        b.setAttribute('aria-label', light ? 'Switch to dark mode' : 'Switch to light mode');
+      });
+    };
+    // the inline head script may already have set data-theme from storage
+    apply(root.dataset.theme === 'light' ? 'light' : 'dark');
+    document.querySelectorAll('[data-theme-toggle]').forEach(b => {
+      b.addEventListener('click', () => {
+        const next = root.dataset.theme === 'light' ? 'dark' : 'light';
+        apply(next); store(next);
+      });
+    });
+  })();
+
   const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
   document.querySelectorAll('[data-nav]').forEach(a => {
     const target = a.getAttribute('data-nav').toLowerCase();
@@ -119,8 +145,8 @@
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(setTB);
   }
 
-  /* homepage: hide the topbar over the sequence hero, reveal once scrolled past it */
-  const seqHeroEl = document.querySelector('.seq-hero');
+  /* homepage: hide the topbar over the video hero, reveal once scrolled past it */
+  const seqHeroEl = document.querySelector('.video-hero');
   if (topbar && seqHeroEl) {
     const onHeroNav = () => {
       const pastHero = seqHeroEl.getBoundingClientRect().bottom <= 0;
@@ -128,6 +154,10 @@
     };
     onHeroNav(); addEventListener('scroll', onHeroNav, { passive: true });
   }
+
+  /* homepage: respect reduced motion — pause the autoplay hero video */
+  const heroVideo = document.querySelector('.video-hero__media');
+  if (heroVideo && reduced) { heroVideo.removeAttribute('autoplay'); heroVideo.pause(); }
 
   /* ---------------------------------------------------------
      5. full-screen menu overlay

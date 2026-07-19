@@ -12,7 +12,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<link rel="stylesheet" href="assets/css/site.css?v=18" />
+<script>try{if(localStorage.getItem('gc-theme')==='light')document.documentElement.dataset.theme='light';}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/site.css?v=21" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -51,6 +52,10 @@
       </ul>
     </nav>
     <div class="header-right">
+      <button class="theme-btn" data-theme-toggle aria-label="Switch to light mode" aria-pressed="false" title="Toggle light / dark">
+        <svg class="theme-ic theme-ic--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.6M12 19v2.6M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2.4 12h2.6M19 12h2.6M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/></svg>
+        <svg class="theme-ic theme-ic--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.4A8.2 8.2 0 1 1 9.6 4a6.4 6.4 0 0 0 10.4 10.4z"/></svg>
+      </button>
       <button class="menu-btn" data-menu-open aria-label="Open menu">
         <span class="bars"><span></span><span></span></span><span class="menu-word">Menu</span>
       </button>
@@ -58,6 +63,11 @@
   </div>
 </header>
 </div>
+
+<!-- always-visible menu button over the homepage hero (before the navbar drops in) -->
+<button class="floating-menu menu-btn" data-menu-open aria-label="Open menu">
+  <span class="bars"><span></span><span></span></span><span class="menu-word">Menu</span>
+</button>
 
 <!-- ============ nav overlay ============ -->
 <div class="nav-menu" id="navMenu" aria-hidden="true">
@@ -82,30 +92,30 @@
 
 <main id="main">
 
-  <!-- ============ HERO — scroll-linked image sequence ============ -->
-  <section class="seq-hero" id="assembly" aria-label="Gloryn Custom">
-    <div class="seq-stage">
-      <canvas id="seqCanvas" aria-hidden="true"></canvas>
-      <div class="seq-scrim" aria-hidden="true"></div>
-      <h1 class="hero-wordmark" id="seqHero" aria-label="Gloryn Custom">
-        <svg viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
-          <text x="600" y="174" text-anchor="middle" textLength="1164" lengthAdjust="spacingAndGlyphs">Gloryn Custom</text>
-        </svg>
-      </h1>
-      <div class="seq-caps" aria-hidden="true">
-        <p class="seq-cap" id="seqCap1" data-from="0.16" data-to="0.37">Starlight headliners</p>
-        <p class="seq-cap" id="seqCap2" data-from="0.42" data-to="0.63">Ambient lighting</p>
-        <p class="seq-cap" id="seqCap3" data-from="0.70" data-to="0.95">Crafted to glow</p>
-      </div>
-      <div class="hero-scroll" aria-hidden="true">Scroll ↓</div>
-      <div class="seq-loader" id="seqLoader" aria-hidden="true">
-        <div class="seq-loader__bar"><i id="seqLoaderFill"></i></div>
-        <div class="seq-loader__txt" id="seqLoaderTxt">Preparing…</div>
+  <!-- ============ HERO — cinematic video ============ -->
+  <section class="video-hero" id="assembly" aria-label="Gloryn Custom">
+    <video class="video-hero__media" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+      <source src="assets/video/hero-m2.mp4" type="video/mp4" />
+    </video>
+    <div class="video-hero__scrim" aria-hidden="true"></div>
+    <h1 class="video-hero__mark" aria-label="Gloryn Custom">
+      <svg viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
+        <text class="vh-word" data-gate x="18" y="174" text-anchor="start" textLength="537" lengthAdjust="spacingAndGlyphs">Gloryn</text>
+        <text class="vh-word" data-gate x="645" y="174" text-anchor="start" textLength="537" lengthAdjust="spacingAndGlyphs" style="--wd:.36s">Custom</text>
+      </svg>
+    </h1>
+    <div class="hero-scroll" aria-hidden="true">Scroll ↓</div>
+  </section>
+
+  <!-- ============ intro — what we do ============ -->
+  <section class="section section--tight" aria-label="About Gloryn Custom">
+    <div class="shell">
+      <div class="intro reveal">
+        <span class="eyebrow"><span class="dot"></span>Who we are</span>
+        <p class="lede" style="max-width:64ch">Gloryn Custom transforms car interiors into something you feel the moment you step in. We specialise in fiber-optic starlight headliners, app-controlled ambient lighting, window tint, wraps and detailing — every install precision-fitted and backed by a 2-year warranty. Based in Ottawa &amp; Montreal, open every day.</p>
       </div>
     </div>
   </section>
-
-  
 
   <!-- ============ services — menu-style list ============ -->
   <section class="section" aria-labelledby="qs-h">
@@ -231,155 +241,26 @@
     <div class="footer-legal">
       <span>© <span data-year>2026</span> Gloryn Custom. All rights reserved.</span>
       <span>Website by <a href="https://summit-sites.vercel.app/" target="_blank" rel="noopener">Summit Sites Agency</a></span>
-      <span>Ambient · Starlight · Tint · Wraps · Detailing</span>
+      <span class="footer-legal__links"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
     </div>
   </div>
   <div class="footer-watermark" aria-hidden="true">GLORYN</div>
 </footer>
 
-<!-- ============ scroll-linked image sequence (hero) ============ -->
+
+<!-- ============ homepage motion (GSAP) ============ -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 (function(){
   "use strict";
-  const canvas = document.getElementById('seqCanvas');
-  if(!canvas || !window.gsap || !window.ScrollTrigger) return;
-
   const REDUCE = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(REDUCE){
+    const v = document.querySelector('.video-hero__media');
+    if(v){ v.removeAttribute('autoplay'); v.pause(); }
+  }
+  if(!window.gsap || !window.ScrollTrigger) return;
   gsap.registerPlugin(ScrollTrigger);
-  ScrollTrigger.config({ ignoreMobileResize:true });
-
-  const FRAME_COUNT = 240;
-  const framePath = i => 'frames/v1/ezgif-frame-' + String(i).padStart(3,'0') + '.webp';
-  const ctx = canvas.getContext('2d', { alpha:false });
-  const frames = new Array(FRAME_COUNT);
-  let loaded = 0, currentIndex = 0, dpr = 1;
-
-  const seqHero      = document.getElementById('seqHero');
-  const loaderEl     = document.getElementById('seqLoader');
-  const loaderTxt    = document.getElementById('seqLoaderTxt');
-  const loaderFill   = document.getElementById('seqLoaderFill');
-
-  function resize(){
-    dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const r = canvas.getBoundingClientRect();
-    canvas.width  = Math.max(1, Math.round(r.width  * dpr));
-    canvas.height = Math.max(1, Math.round(r.height * dpr));
-    ctx.imageSmoothingEnabled = true;
-    ctx.imageSmoothingQuality = 'high';
-    render();
-  }
-
-  function nearestLoaded(i){
-    if(frames[i]) return frames[i];
-    for(let d=1; d<FRAME_COUNT; d++){
-      if(frames[i-d]) return frames[i-d];
-      if(frames[i+d]) return frames[i+d];
-    }
-    return null;
-  }
-
-  // COVER-fit: fill the whole stage (crop overflow), car stays centered.
-  function render(){
-    const cw = canvas.width, ch = canvas.height;
-    const img = nearestLoaded(currentIndex);
-    if(!img){ ctx.fillStyle = '#0b0b0c'; ctx.fillRect(0,0,cw,ch); return; }
-    const iw = img.naturalWidth, ih = img.naturalHeight;
-    const scale = Math.max(cw/iw, ch/ih);
-    const dw = iw*scale, dh = ih*scale;
-    const dx = (cw-dw)/2, dy = (ch-dh)/2;
-    ctx.drawImage(img, dx, dy, dw, dh);
-  }
-
-  function preload(){
-    for(let i=1; i<=FRAME_COUNT; i++){
-      const img = new Image();
-      img.decoding = 'async';
-      img.onload = () => {
-        frames[i-1] = img; loaded++;
-        const pct = Math.round(loaded/FRAME_COUNT*100);
-        if(loaderFill) loaderFill.style.width = pct + '%';
-        if(loaderTxt)  loaderTxt.textContent = 'Loading · ' + pct + '%';
-        if(i === 1) render();
-        if(loaded === FRAME_COUNT){
-          if(loaderEl) loaderEl.classList.add('is-done');
-          ScrollTrigger.refresh();
-        }
-      };
-      img.onerror = () => {
-        loaded++;
-        if(loaded === FRAME_COUNT){ if(loaderEl) loaderEl.classList.add('is-done'); ScrollTrigger.refresh(); }
-      };
-      img.src = framePath(i);
-    }
-  }
-
-  /* scroll-synced captions over the frames — char-by-char reveal (GSAP) */
-  const caps = [];
-  function splitChars(el){
-    const text = el.textContent;
-    el.textContent = '';
-    const chars = [];
-    for(const c of text){
-      const s = document.createElement('span');
-      s.className = 'ch';
-      s.textContent = (c === ' ') ? ' ' : c;
-      el.appendChild(s);
-      chars.push(s);
-    }
-    return chars;
-  }
-  document.querySelectorAll('.seq-cap').forEach(el => {
-    const chars = splitChars(el);
-    gsap.set(chars, { opacity:0, yPercent:120 });
-    const tl = gsap.timeline({ paused:true });
-    tl.to(chars, { opacity:1, yPercent:0, duration:0.6, ease:'power3.out', stagger:0.028 });
-    caps.push({ tl, from:parseFloat(el.dataset.from), to:parseFloat(el.dataset.to), on:false });
-  });
-  function updateCaps(p){
-    caps.forEach(c => {
-      const active = p >= c.from && p < c.to;
-      if(active && !c.on){ c.on = true; c.tl.play(); }
-      else if(!active && c.on){ c.on = false; c.tl.reverse(); }
-    });
-  }
-
-  const seq = { frame:0 };
-  gsap.to(seq, {
-    frame: FRAME_COUNT-1,
-    snap: 'frame',
-    ease: 'none',
-    scrollTrigger:{
-      trigger:'#assembly',
-      start:'top top',
-      end:'bottom bottom',
-      scrub: REDUCE ? true : 0.55,
-      pin:'.seq-stage',
-      anticipatePin:1,
-      invalidateOnRefresh:true
-    },
-    onUpdate:()=>{
-      currentIndex = Math.round(seq.frame);
-      render();
-      const p = seq.frame/(FRAME_COUNT-1);
-      // GLORYN CUSTOM sits at the top, fades out as you scroll into the sequence
-      if(seqHero){
-        const o = Math.max(0, 1 - p/0.12);
-        seqHero.style.opacity = o;
-        seqHero.style.transform = 'translateY(calc(-50% - ' + ((1-o)*26) + 'px))';
-      }
-      updateCaps(p);
-      // "Scroll" cue stays visible throughout the sequence (no fade)
-    }
-  });
-
-  window.addEventListener('resize', resize);
-  ScrollTrigger.addEventListener('refresh', resize);
-  resize();
-  preload();
-
-  /* services list glides up into place as it scrolls in (Framer-Motion-style, via GSAP) */
   if(!REDUCE){
     gsap.from('.svc-item', {
       opacity:0, y:80, duration:1.1, ease:'power3.out', stagger:0.12,
@@ -389,6 +270,6 @@
 })();
 </script>
 
-<script src="assets/js/site.js?v=9" defer></script>
+<script src="assets/js/site.js?v=11" defer></script>
 </body>
 </html>

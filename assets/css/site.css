@@ -280,35 +280,32 @@ main{ position:relative; z-index:2 }
 .loader-count{ font-size:.72rem; letter-spacing:.2em; color:var(--muted); font-variant-numeric:tabular-nums }
 
 /* ============================================================
-   scroll-linked image-sequence hero (home)
+   autoplay video hero (home)
    ============================================================ */
-.seq-hero{ position:relative; height:800vh; background:#0b0b0c }
-.seq-stage{ position:relative; height:100svh; width:100%; overflow:hidden; background:#0b0b0c;
+.video-hero{ position:relative; height:100svh; min-height:540px; overflow:hidden; background:#0b0b0c;
   border-radius:0 0 clamp(1.5rem,4vw,3rem) clamp(1.5rem,4vw,3rem) }
-#seqCanvas{ position:absolute; inset:0; width:100%; height:100%; display:block }
-.seq-scrim{ position:absolute; inset:0; z-index:2; pointer-events:none;
+.video-hero__media{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; display:block }
+.video-hero__scrim{ position:absolute; inset:0; z-index:2; pointer-events:none;
   background:
     radial-gradient(130% 100% at 50% 46%, transparent 42%, rgba(6,6,7,.5) 100%),
-    linear-gradient(to bottom, rgba(6,6,7,.5), transparent 24%, transparent 66%, rgba(6,6,7,.62)) }
-.seq-hero .hero-wordmark{ position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); z-index:3;
-  width:100%; margin:0; padding-inline:clamp(.75rem,2.5vw,2.5rem); line-height:0; pointer-events:none;
-  will-change:opacity,transform,filter }
-.seq-hero .hero-wordmark svg{ filter:drop-shadow(0 8px 44px rgba(0,0,0,.6)) }
-.seq-hero .hero-wordmark text{ fill:var(--cream) }
-.seq-hero .hero-scroll{ z-index:3; color:var(--cream); text-shadow:0 2px 20px rgba(0,0,0,.6) }
-/* scroll-synced captions over the frames (char-by-char GSAP reveal) */
-.seq-caps{ position:absolute; inset:0; z-index:3; pointer-events:none; display:grid; place-items:center }
-.seq-cap{ grid-area:1/1; margin:0; text-align:center; padding-inline:6vw; overflow:hidden;
-  font-family:var(--font-display); font-weight:400; color:var(--cream); letter-spacing:.01em;
-  font-size:clamp(2rem,7vw,5.5rem); line-height:1.12; text-shadow:0 4px 34px rgba(0,0,0,.65) }
-.seq-cap .ch{ display:inline-block; white-space:pre; will-change:transform,opacity }
-.seq-loader{ position:absolute; z-index:5; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center;
-  gap:1.1rem; background:#0b0b0c; transition:opacity .8s var(--ease), visibility .8s }
-.seq-loader.is-done{ opacity:0; visibility:hidden }
-.seq-loader__bar{ width:min(18rem,54vw); height:1px; background:var(--line-soft); overflow:hidden }
-.seq-loader__bar i{ display:block; height:100%; width:0;
-  background:linear-gradient(90deg,var(--gold-deep),var(--gold-bright)); transition:width .2s linear }
-.seq-loader__txt{ font-size:.68rem; letter-spacing:.22em; text-transform:uppercase; color:var(--muted); font-variant-numeric:tabular-nums }
+    linear-gradient(to bottom, rgba(6,6,7,.55), transparent 24%, transparent 62%, rgba(6,6,7,.72)) }
+.video-hero__mark{ position:absolute; left:0; right:0; top:50%; transform:translateY(-50%); z-index:3;
+  width:100%; margin:0; padding-inline:clamp(.75rem,2.5vw,2.5rem); line-height:0; pointer-events:none }
+.video-hero__mark svg{ display:block; width:100%; height:auto; overflow:visible; filter:drop-shadow(0 8px 44px rgba(0,0,0,.6)) }
+.video-hero__mark text{ font-family:var(--font-display); font-weight:400; font-size:190px; fill:var(--cream) }
+.video-hero .hero-scroll{ z-index:3; color:var(--cream); text-shadow:0 2px 20px rgba(0,0,0,.6) }
+/* wordmark intro — one line, “Gloryn” then “Custom”: each unblurs, lifts & fades in */
+.video-hero__mark .vh-word{ opacity:0; filter:blur(14px);
+  transform-box:fill-box; transform-origin:center; transform:translateY(22px) scale(1.05);
+  transition:opacity .7s var(--ease-out), transform .9s var(--ease-out), filter .8s var(--ease-out);
+  transition-delay:var(--wd,0s) }
+.video-hero__mark .vh-word.is-visible{ opacity:1; filter:blur(0); transform:translateY(0) scale(1) }
+
+/* always-visible menu button over the homepage hero (before the navbar drops in) */
+.floating-menu{ position:fixed; top:1.05rem; right:var(--gutter); z-index:95;
+  opacity:0; pointer-events:none; transition:opacity .5s var(--ease);
+  background:rgba(10,10,10,.4); backdrop-filter:blur(10px) }
+.topbar.nav-hidden ~ .floating-menu{ opacity:1; pointer-events:auto }
 
 /* ============================================================
    HERO — flat yellow, video ready (home) [legacy / unused]
@@ -677,6 +674,48 @@ main{ position:relative; z-index:2 }
 @media (max-width:767px){ .hide-on-mobile{ display:none !important } }
 
 /* ============================================================
+   legal pages — privacy policy & terms (prose)
+   ============================================================ */
+.legal{ max-width:58rem }
+.legal__meta{ display:flex; flex-wrap:wrap; gap:.4rem 1.4rem; align-items:center;
+  margin-top:1.6rem; font-size:.8rem; color:var(--faint) }
+.legal__meta strong{ color:var(--muted); font-weight:500 }
+
+.legal__toc{ margin-top:clamp(2.6rem,5vw,3.6rem); padding:clamp(1.4rem,3vw,1.9rem) clamp(1.4rem,3vw,2rem);
+  border:1px solid var(--line); background:rgba(231,181,59,.02) }
+.legal__toc h2{ font-size:.66rem; text-transform:uppercase; letter-spacing:.22em; color:var(--faint); margin-bottom:1.1rem }
+.legal__toc ol{ list-style:none; counter-reset:toc; display:grid; gap:.7rem; font-size:.92rem;
+  grid-template-columns:1fr }
+.legal__toc li{ counter-increment:toc }
+.legal__toc a{ color:var(--muted); display:inline-flex; gap:.85rem; transition:color .3s var(--ease) }
+.legal__toc a::before{ content:counter(toc,decimal-leading-zero); color:var(--gold);
+  font-variant-numeric:tabular-nums; font-size:.78rem }
+.legal__toc a:hover{ color:var(--cream) }
+@media(min-width:680px){ .legal__toc ol{ grid-template-columns:1fr 1fr; gap:.7rem 2rem } }
+
+.legal__body{ margin-top:clamp(3rem,6vw,4.5rem); display:grid; gap:clamp(2.6rem,5vw,3.8rem) }
+.legal-block{ scroll-margin-top:7rem }
+.legal-block h2{ font-family:var(--font-display); font-weight:400; color:var(--cream);
+  font-size:clamp(1.55rem,3vw,2.3rem); line-height:1.08; margin-bottom:1.2rem;
+  display:flex; align-items:baseline; gap:1rem }
+.legal-block h2 .idx{ font-family:var(--font-body); font-size:.72rem; font-weight:600; letter-spacing:.15em;
+  color:var(--gold); transform:translateY(-.4em) }
+.legal-block h3{ color:var(--cream); font-size:1.02rem; font-weight:600; margin:1.7rem 0 .6rem }
+.legal-block p{ color:var(--muted); line-height:1.85; margin-bottom:1rem; max-width:66ch }
+.legal-block p:last-child{ margin-bottom:0 }
+.legal-block a{ color:var(--gold) } .legal-block a:hover{ color:var(--gold-bright) }
+.legal-block strong{ color:var(--cream); font-weight:600 }
+.legal-block ul{ list-style:none; display:grid; gap:.7rem; margin:.5rem 0 1.2rem; max-width:66ch }
+.legal-block ul li{ position:relative; padding-left:1.5rem; color:var(--muted); line-height:1.75 }
+.legal-block ul li::before{ content:"—"; position:absolute; left:0; color:var(--gold-deep) }
+
+.legal__foot{ margin-top:clamp(3rem,6vw,4.5rem); padding-top:2rem; border-top:1px solid var(--line-soft);
+  font-size:.82rem; color:var(--faint); max-width:66ch }
+.legal__foot a{ color:var(--gold) } .legal__foot a:hover{ color:var(--gold-bright) }
+
+.footer-legal__links a{ white-space:nowrap }
+
+/* ============================================================
    sharp edges — unround every component
    (only the circular logo emblem and the custom cursor stay round)
    ============================================================ */
@@ -689,3 +728,70 @@ main{ position:relative; z-index:2 }
 .ba-knob,
 .srv-media .idx,
 .tcard .av{ border-radius:0 }
+
+/* ============================================================
+   theme toggle button (header, next to Menu)
+   ============================================================ */
+.theme-btn{ display:inline-grid; place-items:center; width:2.55rem; height:2.55rem; flex:none;
+  border:1px solid var(--line); color:var(--cream);
+  transition:border-color .3s, color .3s, background .3s, transform .3s var(--ease) }
+.theme-btn:hover{ border-color:var(--gold); color:var(--gold) }
+.theme-btn:active{ transform:scale(.94) }
+.theme-btn svg{ width:17px; height:17px; display:none }
+.theme-btn .theme-ic--sun{ display:block }                        /* dark mode → offer sun */
+html[data-theme="light"] .theme-btn .theme-ic--sun{ display:none }
+html[data-theme="light"] .theme-btn .theme-ic--moon{ display:block }
+/* keep it legible while sitting over the dark video hero (before scroll) */
+.floating-menu .theme-btn{ color:var(--cream) }
+
+/* ============================================================
+   LIGHT MODE — “cool gallery white”
+   flips the design tokens; the video hero stays cinematic (dark)
+   ============================================================ */
+html[data-theme="light"]{
+  --bg:#f6f6f4;
+  --bg-deep:#eeeeeb;
+  --surface:#ffffff;
+  --surface-2:#f1f1ee;
+  --ink:#17150f;              /* dark text that sits on gold buttons */
+  --gold:#9a6a15;            /* deep antique gold — readable on light */
+  --gold-bright:#7d5410;     /* hover → richer/darker on light */
+  --gold-deep:#6a4711;
+  --bronze:#5f3f14;
+  --cream:#1b1b1e;           /* primary text → charcoal */
+  --muted:rgba(27,27,30,.62);
+  --faint:rgba(27,27,30,.44);
+  --line:rgba(27,27,30,.14);
+  --line-soft:rgba(27,27,30,.08);
+  color-scheme:light;
+}
+html[data-theme="light"] body{ color:var(--cream) }
+
+/* components that hardcode dark values */
+html[data-theme="light"] .promo{ background:#f0efe9 }
+html[data-theme="light"] .header.scrolled{ background:rgba(255,255,255,.72) }
+html[data-theme="light"] .floating-menu{ background:rgba(255,255,255,.6) }
+html[data-theme="light"] .field input:focus,
+html[data-theme="light"] .field select:focus,
+html[data-theme="light"] .field textarea:focus{ background:#ffffff }
+html[data-theme="light"] .loc-map{ background:
+  radial-gradient(circle at 32% 42%, rgba(154,106,21,.14), transparent 58%),
+  repeating-linear-gradient(0deg, rgba(27,27,30,.05) 0 1px, transparent 1px 28px),
+  repeating-linear-gradient(90deg, rgba(27,27,30,.05) 0 1px, transparent 1px 28px),
+  #ececea }
+
+/* keep the video hero dark & cinematic even in light mode */
+html[data-theme="light"] .video-hero__mark text{ fill:#f6f1e7 }
+html[data-theme="light"] .video-hero .hero-scroll{ color:#f6f1e7 }
+
+/* starfields are drawn light-on-dark → hide them where the surface is now light */
+html[data-theme="light"] .footer .starfield,
+html[data-theme="light"] .nav-menu .starfield,
+html[data-theme="light"] .page-hero .starfield{ display:none }
+
+/* atmosphere + grain retuned for a light canvas */
+html[data-theme="light"] .grain{ opacity:.02; mix-blend-mode:multiply }
+html[data-theme="light"] .atmosphere::before{ background:
+  radial-gradient(120% 80% at 50% -10%, rgba(154,106,21,.05), transparent 55%),
+  radial-gradient(90% 60% at 85% 110%, rgba(154,106,21,.045), transparent 60%) }
+html[data-theme="light"] .footer-watermark{ color:rgba(154,106,21,.06) }

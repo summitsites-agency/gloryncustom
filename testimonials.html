@@ -9,7 +9,8 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<link rel="stylesheet" href="assets/css/site.css?v=18" />
+<script>try{if(localStorage.getItem('gc-theme')==='light')document.documentElement.dataset.theme='light';}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/site.css?v=21" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -48,6 +49,10 @@
       </ul>
     </nav>
     <div class="header-right">
+      <button class="theme-btn" data-theme-toggle aria-label="Switch to light mode" aria-pressed="false" title="Toggle light / dark">
+        <svg class="theme-ic theme-ic--sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.4v2.6M12 19v2.6M4.2 4.2l1.9 1.9M17.9 17.9l1.9 1.9M2.4 12h2.6M19 12h2.6M4.2 19.8l1.9-1.9M17.9 6.1l1.9-1.9"/></svg>
+        <svg class="theme-ic theme-ic--moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.4A8.2 8.2 0 1 1 9.6 4a6.4 6.4 0 0 0 10.4 10.4z"/></svg>
+      </button>
       <button class="menu-btn" data-menu-open aria-label="Open menu">
         <span class="bars"><span></span><span></span></span><span class="menu-word">Menu</span>
       </button>
@@ -113,38 +118,38 @@
       <div class="tcards mt-lg">
         <article class="tcard reveal">
           <span class="stars">★★★★★</span>
-          <p>"Better than factory. Clean wiring, no flicker — people actually ask about it."</p>
-          <div class="who"><span class="av">M</span><span><span class="nm">Marcus D.</span><span class="rl">Ottawa · Ambient + Starlight</span></span></div>
+          <p>"From start to finish, the job was professionally done. The lights look really amazing. I would highly recommend to friends and family."</p>
+          <div class="who"><span class="av">L</span><span><span class="nm">Lucky V.</span><span class="rl">Montreal · Ambient Lighting</span></span></div>
         </article>
 
         <article class="tcard reveal" style="--rd:80ms">
           <span class="stars">★★★★★</span>
-          <p>"The shooting stars are unreal. Clean job, finished right on time."</p>
-          <div class="who"><span class="av">S</span><span><span class="nm">Sabrina L.</span><span class="rl">Montreal · Starlight + Shooting Stars</span></span></div>
+          <p>"Amazing work! I’ve had him install lights on both my cars because I’m always impressed by the quality of work. Good prices, amazing service."</p>
+          <div class="who"><span class="av">G</span><span><span class="nm">Germain A.</span><span class="rl">Montreal · Ambient Lighting</span></span></div>
         </article>
 
         <article class="tcard reveal" style="--rd:160ms">
           <span class="stars">★★★★★</span>
-          <p>"Tint + ambient, professional start to finish. The 2-year warranty sealed it."</p>
-          <div class="who"><span class="av">J</span><span><span class="nm">Jason R.</span><span class="rl">Ottawa · Tint + Ambient</span></span></div>
+          <p>"Fast, impeccable, and flawless service. Very courteous as a person and highly professional. I highly recommend them."</p>
+          <div class="who"><span class="av">L</span><span><span class="nm">Laleye</span><span class="rl">Ottawa · Ambient Lighting + Starlight</span></span></div>
         </article>
 
         <article class="tcard reveal" style="--rd:0ms">
           <span class="stars">★★★★★</span>
-          <p>"I've had cheap kits before. This is another level — colours, music sync, the whole cabin."</p>
-          <div class="who"><span class="av">A</span><span><span class="nm">Ahmed K.</span><span class="rl">Montreal · Ambient Lighting</span></span></div>
+          <p>"The service was executed flawlessly, accompanied by a lucid explanation and a range of viable options, all delivered with professionalism and courtesy."</p>
+          <div class="who"><span class="av">F</span><span><span class="nm">Faiz M.</span><span class="rl">Montreal · Ambient Lighting</span></span></div>
         </article>
 
         <article class="tcard reveal" style="--rd:80ms">
           <span class="stars">★★★★★</span>
-          <p>"Custom logo and full starlight. Turned heads at every meet. Flawless finish."</p>
-          <div class="who"><span class="av">D</span><span><span class="nm">Dominic P.</span><span class="rl">Ottawa · Custom Logo + Starlight</span></span></div>
+          <p>"Thank u u did a perfect job thanks a lot really appreciated"</p>
+          <div class="who"><span class="av">M</span><span><span class="nm">Moe M.</span><span class="rl">Ottawa · Custom Logo + Starlight</span></span></div>
         </article>
 
         <article class="tcard reveal" style="--rd:160ms">
           <span class="stars">★★★★★</span>
-          <p>"Fair pricing, spotless work. Best car experience I've had in the city."</p>
-          <div class="who"><span class="av">N</span><span><span class="nm">Nadia F.</span><span class="rl">Montreal · Detailing + Ambient</span></span></div>
+          <p>"Excellent service et service après vente. Jy suis retourner pour modifier des choses et cela sans frais et avec le sourire . Merci"</p>
+          <div class="who"><span class="av">Y</span><span><span class="nm">Yannick P.</span><span class="rl">Montreal · Detailing + Ambient</span></span></div>
         </article>
       </div>
 
@@ -200,12 +205,12 @@
     <div class="footer-legal">
       <span>© <span data-year>2026</span> Gloryn Custom. All rights reserved.</span>
       <span>Website by <a href="https://summit-sites.vercel.app/" target="_blank" rel="noopener">Summit Sites Agency</a></span>
-      <span>Ambient · Starlight · Tint · Wraps · Detailing</span>
+      <span class="footer-legal__links"><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms of Service</a></span>
     </div>
   </div>
   <div class="footer-watermark" aria-hidden="true">GLORYN</div>
 </footer>
 
-<script src="assets/js/site.js?v=9" defer></script>
+<script src="assets/js/site.js?v=11" defer></script>
 </body>
 </html>
