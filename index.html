@@ -94,9 +94,9 @@
 
   <!-- ============ HERO — cinematic video ============ -->
   <section class="video-hero" id="assembly" aria-label="Gloryn Custom">
-    <video class="video-hero__media" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-      <source src="assets/video/hero-m2.mp4" type="video/mp4" />
-    </video>
+    <video class="video-hero__media" autoplay muted loop playsinline preload="auto" aria-hidden="true"
+           data-hero-desktop="assets/video/hero-m2.mp4"
+           data-hero-mobile="assets/video/hero-mobile.mov"></video>
     <div class="video-hero__scrim" aria-hidden="true"></div>
     <h1 class="video-hero__mark" aria-label="Gloryn Custom">
       <svg viewBox="0 0 1200 240" preserveAspectRatio="xMidYMid meet" role="img" aria-hidden="true" focusable="false">
@@ -106,6 +106,29 @@
     </h1>
     <div class="hero-scroll" aria-hidden="true">Scroll ↓</div>
   </section>
+  <script>
+  /* pick the hero video for the viewport: mobile gets the vertical cut, desktop the wide M2.
+     runs inline right after the element so the other file never downloads on the wrong device. */
+  (function(){
+    var v = document.querySelector('.video-hero__media');
+    if(!v) return;
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var mq = window.matchMedia('(max-width: 767px)');
+    var applied = '';
+    function pick(){
+      var src = mq.matches ? v.dataset.heroMobile : v.dataset.heroDesktop;
+      if(!src || src === applied) return;
+      applied = src;
+      v.src = src;
+      v.load();
+      if(!reduce){ v.play().catch(function(){}); }
+    }
+    if(reduce){ v.removeAttribute('autoplay'); }
+    pick();
+    if(mq.addEventListener){ mq.addEventListener('change', pick); }
+    else if(mq.addListener){ mq.addListener(pick); }
+  })();
+  </script>
 
   <!-- ============ intro — what we do ============ -->
   <section class="section section--tight" aria-label="About Gloryn Custom">
