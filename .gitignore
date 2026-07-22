@@ -31,6 +31,9 @@ frames/v2/
 # mobile hero video (shipped)
 !assets/video/hero-mobile.mp4
 
+# desktop hero video (shipped)
+!assets/video/homepage-2.mp4
+
 # local env — never commit secrets (Resend key etc.)
 .env
 .env.local
