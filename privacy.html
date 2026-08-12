@@ -7,11 +7,34 @@
 <meta name="description" content="How Gloryn Custom collects, uses and protects your personal information when you book or contact us. Ottawa &amp; Montreal." />
 <meta name="theme-color" content="#0a0a0a" />
 <meta name="robots" content="index, follow" />
+<!-- Google tag (gtag.js) — gated by Consent Mode v2; banner lives in assets/js/site.js -->
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  (function(){
+    var c = null;
+    try { c = localStorage.getItem('gc-consent'); } catch (e) {}
+    var ads  = (c === 'all') ? 'granted' : 'denied';
+    var func = (c === 'all' || c === 'necessary') ? 'granted' : 'denied';
+    gtag('consent', 'default', {
+      'ad_storage'            : ads,
+      'ad_user_data'          : ads,
+      'ad_personalization'    : ads,
+      'analytics_storage'     : ads,
+      'functionality_storage' : func,
+      'personalization_storage': func,
+      'security_storage'      : 'granted'
+    });
+  })();
+  gtag('js', new Date());
+  gtag('config', 'AW-18381454669');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-18381454669"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="icon" href="assets/img/logo-512.webp" type="image/webp" />
-<script>try{if(localStorage.getItem('gc-theme')==='light')document.documentElement.dataset.theme='light';}catch(e){}</script>
-<link rel="stylesheet" href="assets/css/site.css?v=22" />
+<script>try{var c=localStorage.getItem('gc-consent');if((c==='all'||c==='necessary')&&localStorage.getItem('gc-theme')==='light')document.documentElement.dataset.theme='light';}catch(e){}</script>
+<link rel="stylesheet" href="assets/css/site.css?v=25" />
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
@@ -101,7 +124,7 @@
       <div class="legal">
 
         <div class="legal__meta">
-          <span><strong>Last updated:</strong> July 18, 2026</span>
+          <span><strong>Last updated:</strong> August 11, 2026</span>
           <span><strong>Applies to:</strong> gloryncustom.com and our Ottawa &amp; Montreal locations</span>
         </div>
 
@@ -112,7 +135,7 @@
             <li><a href="#collect">Information we collect</a></li>
             <li><a href="#use">How we use your information</a></li>
             <li><a href="#sharing">Sharing &amp; service providers</a></li>
-            <li><a href="#cookies">Cookies &amp; analytics</a></li>
+            <li><a href="#cookies">Cookies &amp; advertising</a></li>
             <li><a href="#retention">How long we keep it</a></li>
             <li><a href="#security">How we protect it</a></li>
             <li><a href="#rights">Your privacy rights</a></li>
@@ -156,6 +179,7 @@
               <li>Provide quotes, warranty support and after-care</li>
               <li>Improve our website, services and customer experience</li>
               <li>Send you occasional updates or offers, where you've asked to hear from us</li>
+              <li>Measure whether our advertising is working, where you've allowed it</li>
               <li>Meet our legal, tax and record-keeping obligations</li>
             </ul>
             <p>We do <strong>not</strong> sell your personal information, and we do not use it for purposes unrelated to those above without your consent.</p>
@@ -166,6 +190,7 @@
             <p>We keep your information confidential and only share it where necessary to operate our business:</p>
             <ul>
               <li><strong>Service providers</strong> who help us run our website, host the site, deliver our booking form and communicate with you</li>
+              <li><strong>Google</strong>, as our advertising provider, but only where you have accepted advertising cookies — see <a href="#cookies">Cookies &amp; advertising</a></li>
               <li><strong>Professional advisors</strong> such as accountants or legal counsel, where required</li>
               <li><strong>Authorities</strong> when we are legally required to disclose information</li>
             </ul>
@@ -173,9 +198,29 @@
           </article>
 
           <article class="legal-block" id="cookies">
-            <h2><span class="idx">05</span>Cookies &amp; analytics</h2>
-            <p>Our website uses a minimal amount of technology to function and load quickly. This can include essential cookies and content loaded from trusted third parties — such as web fonts, animation libraries and our embedded Instagram feed — which may set their own cookies or collect limited technical data under their own privacy policies.</p>
-            <p>You can control or disable cookies through your browser settings. Blocking some cookies may affect how parts of the site display or behave.</p>
+            <h2><span class="idx">05</span>Cookies &amp; advertising</h2>
+            <p>We keep tracking on this site to a minimum, and nothing optional runs until you say it can. The first time you visit, a banner asks you to choose. Until you choose, advertising and analytics storage stay switched off.</p>
+
+            <h3>What we use</h3>
+            <ul>
+              <li><strong>Strictly necessary</strong> — the basic technology that makes the site load, display and stay secure. Always on; the site cannot work without it.</li>
+              <li><strong>Functional</strong> — remembers your dark or light display choice so the site looks the way you left it. Stored on your own device only.</li>
+              <li><strong>Advertising</strong> — the Google tag, which lets us see whether our Google Ads actually lead to bookings. Off unless you accept it.</li>
+            </ul>
+            <p>Some content on our pages is loaded from trusted third parties — web fonts, animation libraries and our embedded Instagram feed — which may collect limited technical data under their own privacy policies.</p>
+
+            <h3>The Google tag</h3>
+            <p>If you accept advertising cookies, we use <strong>Google Ads</strong> conversion tracking and remarketing. When you arrive from one of our ads, Google adds a click identifier to the link. The tag stores that identifier in a cookie on this site — typically named _gcl_aw, kept for up to 90 days — so that if you go on to book with us, Google can tell us which ad brought you here, and so we can show our ads again to people who have already visited.</p>
+            <p>We see the result of this only as aggregated numbers: how many bookings came from which campaign. We never receive a list of who visited. Google processes this data as our advertising provider under its own terms — see <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's Privacy Policy</a> and <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">how Google uses data from sites that use its services</a>. Because of this, some information is transferred to and stored on servers outside Québec and Canada, including in the United States, where it may be subject to the laws of those jurisdictions.</p>
+
+            <h3>Your choices</h3>
+            <ul>
+              <li><strong>Accept all</strong> — necessary, functional and advertising cookies.</li>
+              <li><strong>Necessary only</strong> — no advertising; we still remember your display preference.</li>
+              <li><strong>Decline</strong> — strictly necessary technology only. We keep a single record of the fact that you declined, so we don't ask you again on every page; nothing else is stored, and your display preference resets on each visit.</li>
+            </ul>
+            <p>You can change your mind at any time using the <strong>Cookie settings</strong> link at the bottom of any page. Choosing "Necessary only" or "Decline" also clears any Google advertising cookies already set on this site. You can additionally block or delete cookies in your browser settings, or turn off personalized Google advertising at <a href="https://myadcenter.google.com/" target="_blank" rel="noopener">My Ad Center</a>. Blocking some cookies may affect how parts of the site display or behave.</p>
+            <p>We do not use cookies to sell your personal information, and we do not track you across unrelated websites.</p>
           </article>
 
           <article class="legal-block" id="retention">
@@ -195,6 +240,7 @@
               <li>Access the personal information we hold about you</li>
               <li>Ask us to correct information that is inaccurate or incomplete</li>
               <li>Withdraw your consent or ask us to delete your information, subject to legal limits</li>
+              <li>Change or withdraw your cookie choices at any time through the <strong>Cookie settings</strong> link in our footer</li>
               <li>Ask how your information is being used or shared</li>
             </ul>
             <p>To exercise any of these rights, contact us using the details below. We'll respond within a reasonable time. If you're not satisfied with our response, you may contact the Office of the Privacy Commissioner of Canada or the Commission d'accès à l'information du Québec.</p>
@@ -281,6 +327,6 @@
   <div class="footer-watermark" aria-hidden="true">GLORYN</div>
 </footer>
 
-<script src="assets/js/site.js?v=12" defer></script>
+<script src="assets/js/site.js?v=14" defer></script>
 </body>
 </html>

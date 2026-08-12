@@ -187,6 +187,8 @@ main{ position:relative; z-index:2 }
 /* fixed stack: navbar on top, promo bar locked directly beneath it */
 .topbar{ position:fixed; inset-inline:0; top:0; z-index:90; transition:transform 1.15s var(--ease) }
 .topbar.nav-hidden{ transform:translateY(-100%); pointer-events:none }
+/* used for the very first state pass on load — snap, don't slide */
+.topbar.no-anim{ transition:none }
 .header{ position:relative; z-index:2; transition:background .4s, backdrop-filter .4s, border-color .4s;
   border-bottom:1px solid transparent }
 
@@ -510,6 +512,30 @@ main{ position:relative; z-index:2 }
 @media(min-width:1000px){ .tcards{ grid-template-columns:repeat(3,1fr) } }
 
 /* ============================================================
+   booking page — work strip above the form
+   snap rail on phones, even filmstrip from 900px up
+   ============================================================ */
+.book-gallery{ display:flex; gap:clamp(.6rem,1.4vw,1rem); margin-top:clamp(1.4rem,3vw,2.2rem);
+  overflow-x:auto; scroll-snap-type:x mandatory; -webkit-overflow-scrolling:touch;
+  scrollbar-width:none; margin-inline:calc(var(--gutter) * -1); padding-inline:var(--gutter) }
+.book-gallery::-webkit-scrollbar{ display:none }
+.book-shot{ position:relative; flex:0 0 auto; width:clamp(12rem,58vw,16rem); aspect-ratio:4/5;
+  overflow:hidden; background:var(--surface); border:1px solid var(--line-soft);
+  scroll-snap-align:center; transition:border-color .45s var(--ease) }
+.book-shot img{ width:100%; height:100%; object-fit:cover; transition:transform 1.2s var(--ease) }
+.book-shot:hover{ border-color:var(--line) }
+.book-shot:hover img{ transform:scale(1.06) }
+.book-shot::after{ content:""; position:absolute; inset:0; pointer-events:none;
+  background:linear-gradient(to top, rgba(5,5,5,.62), transparent 46%) }
+/* caption sits on the dark scrim in both themes, so it keeps the cream value */
+.book-shot .cap{ position:absolute; left:1rem; right:1rem; bottom:.9rem; z-index:2;
+  font-size:.68rem; letter-spacing:.14em; text-transform:uppercase; color:#f6f1e7 }
+@media(min-width:900px){
+  .book-gallery{ overflow:visible; scroll-snap-type:none; margin-inline:0; padding-inline:0 }
+  .book-shot{ flex:1 1 0; width:auto }
+}
+
+/* ============================================================
    forms (booking / contact)
    ============================================================ */
 .contact-grid{ display:grid; grid-template-columns:1fr; gap:clamp(2rem,5vw,3.5rem) }
@@ -792,3 +818,41 @@ html[data-theme="light"] .atmosphere::before{ background:
   radial-gradient(120% 80% at 50% -10%, rgba(154,106,21,.05), transparent 55%),
   radial-gradient(90% 60% at 85% 110%, rgba(154,106,21,.045), transparent 60%) }
 html[data-theme="light"] .footer-watermark{ color:rgba(154,106,21,.06) }
+
+
+/* ============================================================
+   COOKIE CONSENT — bottom bar gating Google Consent Mode v2
+   built from tokens, so it flips with the light theme for free
+   ============================================================ */
+.consent{ position:fixed; inset-inline:0; bottom:0; z-index:250;
+  background:rgba(10,10,10,.88); backdrop-filter:blur(18px) saturate(140%); -webkit-backdrop-filter:blur(18px) saturate(140%);
+  border-top:1px solid var(--line); box-shadow:0 -24px 60px -30px rgba(0,0,0,.9);
+  transform:translateY(101%); transition:transform .8s var(--ease-out) }
+.consent[hidden]{ display:none }
+.consent.is-in{ transform:none }
+.consent:focus{ outline:none }
+
+.consent-in{ display:flex; flex-direction:column; gap:1.35rem; padding-block:clamp(1.15rem,2.6vw,1.6rem) }
+.consent-copy{ display:flex; flex-direction:column; gap:.6rem }
+.consent-copy p{ margin:0; max-width:54ch; font-size:.84rem; line-height:1.65; color:var(--muted) }
+.consent-copy a{ color:var(--gold); text-decoration:underline; text-underline-offset:.22em;
+  text-decoration-thickness:1px; text-decoration-color:var(--line); transition:color .3s, text-decoration-color .3s }
+.consent-copy a:hover{ color:var(--gold-bright); text-decoration-color:currentColor }
+
+/* all three choices share one size + one click — refusal stays as easy as acceptance */
+.consent-actions{ display:flex; flex-wrap:wrap; gap:.55rem }
+.consent-actions .btn{ padding:.78rem 1.3rem; font-size:.68rem; letter-spacing:.13em; cursor:pointer }
+
+@media(min-width:880px){
+  .consent-in{ flex-direction:row; align-items:center; justify-content:space-between; gap:2.5rem }
+  .consent-actions{ flex:0 0 auto; flex-wrap:nowrap }
+}
+
+/* footer control for withdrawing / changing consent */
+.consent-reopen{ font:inherit; color:var(--gold); background:none; border:0; padding:0;
+  cursor:pointer; transition:color .3s }
+.consent-reopen:hover{ color:var(--gold-bright) }
+
+html[data-theme="light"] .consent{ background:rgba(255,255,255,.92); box-shadow:0 -24px 60px -34px rgba(27,27,30,.32) }
+
+@media(prefers-reduced-motion:reduce){ .consent{ transition:none } }

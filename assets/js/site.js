@@ -18,7 +18,13 @@
      --------------------------------------------------------- */
   (function initTheme() {
     const root = document.documentElement;
-    const store = (v) => { try { localStorage.setItem('gc-theme', v); } catch (e) {} };
+    // only persist the theme once the visitor has allowed functional storage
+    const store = (v) => {
+      try {
+        const c = localStorage.getItem('gc-consent');
+        if (c === 'all' || c === 'necessary') localStorage.setItem('gc-theme', v);
+      } catch (e) {}
+    };
     const themeMeta = document.querySelector('meta[name="theme-color"]');
     const apply = (mode) => {
       root.dataset.theme = mode;
@@ -152,7 +158,13 @@
       const pastHero = seqHeroEl.getBoundingClientRect().bottom <= 0;
       topbar.classList.toggle('nav-hidden', !pastHero);
     };
-    onHeroNav(); addEventListener('scroll', onHeroNav, { passive: true });
+    // the markup starts hidden; resolve the real state without animating it,
+    // otherwise a restored scroll position slides the bar in over 1.15s
+    topbar.classList.add('no-anim');
+    onHeroNav();
+    void topbar.offsetHeight;
+    topbar.classList.remove('no-anim');
+    addEventListener('scroll', onHeroNav, { passive: true });
   }
 
   /* homepage: respect reduced motion — pause the autoplay hero video */
@@ -598,4 +610,153 @@
   } else {
     document.querySelectorAll('[data-gate]').forEach(el => el.classList.add('is-visible'));
   }
+
+  /* ---------------------------------------------------------
+     10. cookie consent — drives Google Consent Mode v2
+     The head snippet defaults every ad/analytics signal to
+     'denied'; nothing here grants anything until the visitor
+     picks. Choice is mirrored in localStorage under gc-consent.
+     --------------------------------------------------------- */
+  (function initConsent() {
+    const KEY = 'gc-consent';
+    const read  = () => { try { return localStorage.getItem(KEY); } catch (e) { return null; } };
+    const write = (v) => { try { localStorage.setItem(KEY, v); } catch (e) {} };
+    const push  = (...a) => { (window.dataLayer = window.dataLayer || []).push(a); };
+    const send  = window.gtag || push;
+
+    /* tell Google what the visitor allowed */
+    function updateConsent(choice) {
+      const ads  = choice === 'all' ? 'granted' : 'denied';
+      const func = (choice === 'all' || choice === 'necessary') ? 'granted' : 'denied';
+      send('consent', 'update', {
+        'ad_storage'             : ads,
+        'ad_user_data'           : ads,
+        'ad_personalization'     : ads,
+        'analytics_storage'      : ads,
+        'functionality_storage'  : func,
+        'personalization_storage': func,
+        'security_storage'       : 'granted'
+      });
+    }
+
+    /* expire any Google cookie already dropped on this domain */
+    function purgeAdCookies() {
+      const host = location.hostname;
+      document.cookie.split(';').forEach(pair => {
+        const name = pair.split('=')[0].trim();
+        if (!/^(_gcl|_ga|_gid|_gac)/.test(name)) return;
+        ['', '; domain=' + host, '; domain=.' + host].forEach(d => {
+          document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:00 GMT; path=/' + d;
+        });
+      });
+    }
+
+    const bar = document.createElement('div');
+    bar.className = 'consent';
+    bar.hidden = true;
+    bar.tabIndex = -1;
+    bar.setAttribute('role', 'dialog');
+    bar.setAttribute('aria-modal', 'false');
+    bar.setAttribute('aria-labelledby', 'consent-title');
+    bar.innerHTML =
+      '<div class="shell consent-in">' +
+        '<div class="consent-copy">' +
+          '<span class="eyebrow" id="consent-title">Cookies</span>' +
+          '<p>We use cookies to measure our advertising and remember your display preference. ' +
+          'Nothing is stored until you choose. <a href="privacy.html">Privacy Policy</a></p>' +
+        '</div>' +
+        '<div class="consent-actions">' +
+          '<button type="button" class="btn btn--ghost" data-consent="none">Decline</button>' +
+          '<button type="button" class="btn btn--ghost" data-consent="necessary">Necessary only</button>' +
+          '<button type="button" class="btn btn--gold" data-consent="all">Accept all</button>' +
+        '</div>' +
+      '</div>';
+
+    // sit just after the skip link so keyboard users reach it early
+    const skip = document.querySelector('.skip');
+    if (skip && skip.parentNode) skip.insertAdjacentElement('afterend', bar);
+    else document.body.insertBefore(bar, document.body.firstChild);
+
+    let open = false;
+    let returnFocus = null;
+    function show(focus) {
+      if (open) return;
+      open = true;
+      bar.hidden = false;
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        bar.classList.add('is-in');
+        if (focus) bar.focus();
+      }));
+    }
+    function hide() {
+      if (!open) return;
+      open = false;
+      bar.classList.remove('is-in');
+      let settled = false;
+      const finish = () => {
+        if (settled) return;
+        settled = true;
+        bar.hidden = true;
+        bar.removeEventListener('transitionend', finish);
+        // hand focus back to whatever opened the banner
+        if (returnFocus && document.contains(returnFocus)) returnFocus.focus();
+        returnFocus = null;
+      };
+      bar.addEventListener('transitionend', finish);
+      setTimeout(finish, 900);
+    }
+
+    bar.addEventListener('click', (e) => {
+      const btn = e.target.closest('[data-consent]');
+      if (!btn) return;
+      const choice = btn.getAttribute('data-consent');
+      write(choice);
+      updateConsent(choice);
+      if (choice === 'all') {
+        // carry the current theme over now that storage is allowed
+        try { localStorage.setItem('gc-theme', document.documentElement.dataset.theme || 'dark'); } catch (err) {}
+      } else if (choice === 'necessary') {
+        purgeAdCookies();
+        try { localStorage.setItem('gc-theme', document.documentElement.dataset.theme || 'dark'); } catch (err) {}
+      } else {
+        purgeAdCookies();
+        try { localStorage.removeItem('gc-theme'); } catch (err) {}
+      }
+      hide();
+    });
+
+    // escape closes only when a choice already exists — never an implied consent
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && open && read()) hide();
+    });
+
+    // "Cookie settings" in the footer legal row, so consent can be withdrawn
+    const legal = document.querySelector('.footer-legal__links');
+    if (legal) {
+      legal.insertAdjacentHTML('beforeend',
+        ' · <button type="button" class="consent-reopen" data-consent-open>Cookie settings</button>');
+    }
+    document.addEventListener('click', (e) => {
+      const opener = e.target.closest('[data-consent-open]');
+      if (!opener) return;
+      e.preventDefault();
+      returnFocus = opener;
+      show(true);
+    });
+
+    // first visit: wait for the loader to clear before sliding in
+    if (!read()) {
+      const el = document.getElementById('loader');
+      if (el && !el.classList.contains('done')) {
+        const mo = new MutationObserver(() => {
+          if (!el.classList.contains('done')) return;
+          mo.disconnect();
+          setTimeout(() => show(false), 420);
+        });
+        mo.observe(el, { attributes: true, attributeFilter: ['class'] });
+      } else {
+        setTimeout(() => show(false), 650);
+      }
+    }
+  })();
 })();
